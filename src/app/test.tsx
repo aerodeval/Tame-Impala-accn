@@ -18,25 +18,18 @@ import cloudinaryLoader from "../../my-loader";
 import { useState } from "react";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 import { audio } from "@cloudinary/url-gen/qualifiers/source";
+import { WavyBackground } from "./ui/wavy-background";
+import { PinContainer } from "./ui/3d-pin";
 
-  const wordsgen = `Will I be known and loved? 
-  Is there one that I trust?
-  Starting to sober up
-  Has it been long enough?
-  Will I be known and loved?
-  Little closer, close enough
-  I'm a loser, loosen up
-  Setting free, must be tough
-  Will I be known and loved?
-  Is there one that I trust?
-  Starting to sober up
-  Has it been long enough?
-  Will I be so in love?
-  Any closer? Close enough
-  Shout out to what is done
-  R.I.P., here comes the sun
+  const wordsgen = `
+  Every single word you told me
+  I believed without a question, always
+  To save all of us
+  You told us both to trust
+  But now I know you only saved yourself
   `;
 
+  const tygen = `Thanks for tuning in till the end, just like the last echoes of a Tame Impala song.`;
 const words = [
   {
     text: "Did",
@@ -222,12 +215,31 @@ const content = [
 export default function Home() {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null); 
   const [isSpinning, setIsSpinning] = useState(false);
+  const [interPlan,setPlan]=useState(false)
+  const delayInMillis = 4000; // 2 seconds
+
+  const handlePlanetClick=()=>{
+
+  const planet=  document.querySelector('.finalscreen');
+  const planet2=  document.querySelector('.scler');
+
+  planet!.classList.add('planetanimation');
+
+  planet!.addEventListener('animationend',()=>{
+
+    planet2!.classList.add('planetTransform')
+  })
+  };
 
   const handleImageClick = () => {
     if (!isSpinning) {
       const newAudio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
       setAudio(newAudio);
-      newAudio.play(); // Start playing audio
+      setTimeout(() => {
+        newAudio.play(); 
+      }, delayInMillis);
+
+// Start playing audio
       setIsSpinning(true);
     } else {
       if (audio) {
@@ -243,7 +255,8 @@ export default function Home() {
     element!.classList.add('vinylcontainer');
     element!.addEventListener('animationend', () => {
      const elementToAdd = document.querySelector('.hypnotic-spiral');
-     elementToAdd?.classList.add('makeituse');
+     const elementToAdd2 = document.querySelector('.wavey');
+     elementToAdd2?.classList.add('bg-opac');
  
     });
     
@@ -331,30 +344,184 @@ His Journey </p>  <div className="p-10 flex items-center justify-center inline">
     <p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 As Kevin said himself</p>
 
-<div className="lyrics-display flex items-center justify-center">
+<div className="lyrics-display flex items-center justify-center text-center">
  <TextGenerateEffect  words={wordsgen} />
  </div>
 
- <div className="hspiral-container  flex items-center justify-center">
+ <div className="hspiral-container relative flex items-center justify-center"onClick={handleImageClick} >
+
+ <WavyBackground className="bg-opac max-w-4xl mx-auto pb-40 "></WavyBackground>
 <div  className="vinyl-container"    onClick={handleDivClick}>
     <div className="h-[4rem] bg-white packcontainer" >
          </div>
     <div className="vinyl-image">
+      
 <Image
         src="/impalavinyl"
         alt="dummy image"
         width="1000"
         height="1000"
         className={`hypnotic-spiral relative flex items-center justify-center ${isSpinning ? 'spin-animation' : ''}`}
-        onClick={handleImageClick}
+        
       />
+   
 </div>
 
 
+
 </div>
 </div>
+<div   onClick={handlePlanetClick} className="finalscreen relative flex items-center justify-center ">
+  {/* <Image
+  className="checkered-pattern absolute "
+  src="/pattern_checkerboard_1_2_0-0_0_1__008a6c_44669c_y33ijk"
+  alt="dummy image"
+  width="1000"
+  height="900"
+  
+  style={{  width:'auto',height:'auto'}}
+  /> */}
+ 
+<motion.img
+         className="absolute bgspace"
+         src="../imgs/bgspace.png"
+         alt="dummy image"
+       
+         style={{  zIndex:1}}
+  
+  
+    />
+
+<motion.img
+         className="absolute man"
+         src="../imgs/man.png"
+         alt="dummy image"
+         width="1000"
+         height="1000"
+         
+      animate={{
+        x: [0, 0, 0], // Keyframes for horizontal movement
+        y: [5, -5, 5], // Keyframes for vertical movement (no movement in this example)
+        transition: {
+          duration: 2, // Total duration of the animation
+          ease: 'easeInOut', // Easing function
+         repeat:Infinity,// Loop the animation indefinitely
+          repeatDelay: 1, // Delay between each loop iteration
+        },
+      }}
+    />
+ 
+
+<motion.img
+         className="absolute sun scler"
+         src="../imgs/sun.png"
+         alt="dummy image"
+         
+         style={{ maxWidth: '20%',height:'auto' }}
+      animate={{
+        x: [-20, 20, -20], // Keyframes for horizontal movement
+        y: [0, 0, 0], // Keyframes for vertical movement (no movement in this example)
+        transition: {
+          duration: 2, // Total duration of the animation
+          ease: 'easeInOut', // Easing function
+         repeat:Infinity,// Loop the animation indefinitely
+          repeatDelay: 1, // Delay between each loop iteration
+        },
+      }}
+    />
+ 
+
+ 
+<motion.img
+             className="absolute plan1 scler"
+             src="../imgs/planet1.png"
+         alt="dummy image"
+ 
+  style={{ maxWidth: '20%',height:'auto' }}
+  animate={{
+        x: [-10, 10, -10], // Keyframes for horizontal movement
+        y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
+        transition: {
+          duration: 2, // Total duration of the animation
+          ease: 'easeInOut', // Easing function
+          repeat:Infinity,// Loop the animation indefinitely
+
+        },
+      }}
+    />
+
+<motion.img
+             className="absolute plan2 scler"
+             src="../imgs/layer 3.png"
+         alt="dummy image"
+   
+         style={{  maxWidth: '20%',height:'auto' }}
+      animate={{
+        x: [-10, 10, -10], // Keyframes for horizontal movement
+        y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
+        transition: {
+          duration: 2, // Total duration of the animation
+          ease: 'easeInOut', // Easing function
+          repeat:Infinity,// Loop the animation indefinitely
+
+        },
+      }}
+    />
+    <motion.img
+             className="absolute plan11 scler"
+             src="../imgs/layer 8.png"
+         alt="dummy image"
+  style={{ maxWidth: '20%',height:'auto' }}
+  animate={{
+        x: [-10, 10, -10], // Keyframes for horizontal movement
+        y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
+        transition: {
+          duration: 2, // Total duration of the animation
+          ease: 'easeInOut', // Easing function
+          repeat:Infinity,// Loop the animation indefinitely
+
+        },
+      }}
+    />  <motion.img
+    className="absolute plan9 scler"
+    src="../imgs/layer 9.png"
+alt="dummy image"
+style={{ maxWidth: '20%',height:'auto' }}
+animate={{
+x: [-10, 10, -10], // Keyframes for horizontal movement
+y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
+transition: {
+ duration: 2, // Total duration of the animation
+ ease: 'easeInOut', // Easing function
+ repeat:Infinity,// Loop the animation indefinitely
+
+},
+}}
+/>
+<motion.img
+    className="absolute plan12 scler"
+    src="../imgs/layer 11.png"
+alt="dummy image"
+style={{ maxWidth: '20%',height:'auto' }}
+animate={{
+x: [-10, 10, -10], // Keyframes for horizontal movement
+y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
+transition: {
+ duration: 2, // Total duration of the animation
+ ease: 'easeInOut', // Easing function
+ repeat:Infinity,// Loop the animation indefinitely
+
+},
+}}
+/>
+   
+</div>
+
+
 
     </div>
+    
+
     {/* <div>
     <div className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
       <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
@@ -368,6 +535,11 @@ As Kevin said himself</p>
       </p>
     </div>
     </div> */}
+
+<div className="final-note flex items-center justify-center text-center">
+ <TextGenerateEffect  words={tygen} />
+ </div>
+
   </div>
   );
 }

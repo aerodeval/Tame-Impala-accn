@@ -105,7 +105,7 @@ body {
   margin-right: 22rem;
   transform: skewY(10deg);
     height: 24rem;
-    margin-top: 67px;
+    margin-top: 15rem;
     width: 23rem;
     background-image: url('https://res.cloudinary.com/dm3ienizb/image/upload/v1712063830/crumbled-paper.png');
 
@@ -161,11 +161,12 @@ overflow: hidden;
 
 .hspiral-container{
 
-  animation: bgchange 45s forwards;
-  transition: transform 2s ease;
+transition: transform 2s ease-out;
 }
 
-
+/* .vinyl-container:hover{
+transform: scale(1.1);
+} */
 .vinylcontainer{
 
   .packcontainer{
@@ -186,16 +187,6 @@ overflow: hidden;
   animation: inherit;
 } */
 
-@keyframes bgchange { 
-  0%{
-    background-image: url('../../public/imgs/impalabg.jfif');
-  }
-
-100% {
-  background-image: url('../../public/imgs/impalabg2.jfif');
-
-  }
-}
 
 @keyframes spin { 
   0%{
@@ -212,7 +203,7 @@ transform: rotate(0);
   }
 100% {
 
-    transform: rotate(7turn) 
+    transform: rotate(7turn)
   }
 }
 
@@ -231,7 +222,8 @@ transform: rotate(0);
  transform: skewY(0) translateX(-10rem);
       }
     }
-    
+  
+
   
 
 .spin-animation{
@@ -239,3 +231,209 @@ transform: rotate(0);
   animation: spin 45s forwards;
 }
 
+@keyframes opac {  0% {
+  opacity: 0; }
+  100% {
+   
+    opacity: 100;
+    }
+  }
+
+
+
+  @keyframes planet {  0% {
+   }
+    100% {
+     
+      transform: rotate3d(0, 0, 0,0deg );
+      }
+    }
+
+
+    
+  @keyframes plantrans {  0% {
+  }
+   100% {
+    
+     transform: translate3d()
+     }
+   }
+.bg-opac{
+  animation: opac 10s forwards;
+}
+.wavey{
+  opacity: 0;
+}
+
+/* 
+.checkered-pattern{
+  width: 100%;
+  max-height: 500px;
+/* }  */
+
+.plan1{
+  left: 27%;
+  z-index: 2;
+  
+}
+
+.sun{
+  margin-top: 20%;
+  left: 64%;
+  z-index: 2;
+}
+
+.plan2{
+  top:20%;
+  left:10%;
+  z-index: 2;
+}
+
+
+.plan12{
+  
+  margin-top:19%;
+  left:36%;
+  z-index: 2;
+}
+.plan2{
+  margin-top: -15%;
+  left:60%;
+  z-index: 2;
+}
+.plan3{
+  margin-top: 5%;
+  left:58%;
+  z-index: 2;
+} 
+
+
+  .bgspace {
+    max-height: 700px;
+    border-radius: 10px;
+    box-shadow: inset 0px -106px 138px 17px rgb(26 1 1),1px -4px 138px 114px rgb(40 73 42);
+}
+
+.man{  box-shadow:inset 0px -84px 138px 18px rgb(26 1 1);
+ background: url("https://res.cloudinary.com/dm3ienizb/image/upload/v1712560091/pattern_checkerboard_rzpkqc.png");
+
+}
+
+
+.planetanimation{
+  animation: planet 5s forwards;
+}
+
+.planetTransform{
+  animation: plantrans 5s forwards;
+}
+
+
+.finalscreen{
+
+margin-top: 30%;
+
+  transform: rotate3d(3, 1, 1, 301deg);
+}
+
+.plan11{
+  margin-top: -22%;
+  left:64%;
+  z-index:2;
+}
+
+.plan9{
+  margin-top: -22%;
+  left:38%;
+  z-index:2
+}
+
+/* .planetTransform{
+  animation: screenzoom 5s forwards;
+} */
+
+.final-note{
+  padding-top: 14rem;
+}
+@media (min-width: 500px) and (max-width: 991.98px)  {
+.sun{
+  margin-top:5%;
+  left:81%
+}
+
+.plan1,.plan12 {
+    left:15%
+  }
+  .plan1{
+    left: 10%;
+  }
+  .plan12{
+    left: 20%;
+    margin-top: 45%;
+  }
+  .plan9{
+    margin-top: -35%;
+    left:23%
+  }
+  .bgspace {
+    max-height: 700px;
+    border-radius: 10px;
+    box-shadow: inset 0px -106px 138px 17px rgb(26 1 1),  1px -4px 138px 114px rgb(40 73 42)
+  }
+  
+.man{ box-shadow:  inset 9px -9px 79px 101px rgb(26 1 1);
+  background: url("https://res.cloudinary.com/dm3ienizb/image/upload/v1712560091/pattern_checkerboard_rzpkqc.png");
+ 
+ }
+ 
+}
+
+
+
+ 
+
+
+ @media  (max-width:500px){
+  .final-note{
+    padding-top: 10rem;
+  }
+.vinyl-container{
+  transform: scale(0.4);
+}
+.packcontainer{
+  margin-right: 14rem;
+}
+  .bgspace {
+    max-height: 700px;
+    border-radius: 10px;
+    box-shadow: inset -1px -20px 138px 17px rgb(26 1 1),  1px -4px 138px 114px rgb(40 73 42)
+}
+
+  .sun{
+    margin-top:5%;
+    left:81%
+  }
+  
+  .plan1,.plan12 {
+      left:15%
+    }
+    .plan1{
+      left: 10%;
+    }
+    .plan12{
+      left: 20%;
+      margin-top: 45%;
+    }
+    .plan9{
+      margin-top: -35%;
+      left:23%
+    }
+
+
+  .man{ box-shadow: none;
+    background: url("https://res.cloudinary.com/dm3ienizb/image/upload/v1712560091/pattern_checkerboard_rzpkqc.png");
+   
+   }
+  
+
+}
