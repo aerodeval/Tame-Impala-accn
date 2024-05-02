@@ -352,8 +352,8 @@ margin-top: 30%;
   animation: screenzoom 5s forwards;
 } */
 
-.final-note{
-  padding-top: 14rem;
+.final-notes{
+  padding-top: 27rem;
 }
 @media (min-width: 500px) and (max-width: 991.98px)  {
 .sun{
@@ -394,7 +394,7 @@ margin-top: 30%;
 
 
  @media  (max-width:500px){
-  .final-note{
+  .final-notes{
     padding-top: 10rem;
   }
 .vinyl-container{

@@ -536,7 +536,7 @@ transition: {
     </div>
     </div> */}
 
-<div className="final-note flex items-center justify-center text-center">
+<div className="final-notes flex items-center justify-center text-center">
  <TextGenerateEffect  words={tygen} />
  </div>
 
