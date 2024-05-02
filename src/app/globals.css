@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
 
+  overflow-x: hidden;
+}
 .no-visible-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -264,7 +267,9 @@ transform: rotate(0);
 .wavey{
   opacity: 0;
 }
-
+.vortex{
+  margin-top: 25rem;
+}
 /* 
 .checkered-pattern{
   width: 100%;
@@ -278,8 +283,8 @@ transform: rotate(0);
 }
 
 .sun{
-  margin-top: 20%;
-  left: 64%;
+  margin-top: 5%;
+  left: 81%;
   z-index: 2;
 }
 
@@ -394,6 +399,9 @@ margin-top: 30%;
 
 
  @media  (max-width:500px){
+  .vortex{
+    margin-top: 10rem;
+  }
   .final-notes{
     padding-top: 10rem;
   }
@@ -436,4 +444,9 @@ margin-top: 30%;
    }
   
 
+}
+
+.vortex{
+  font-size: 2.5rem;
+  line-height: 4rem;
 }

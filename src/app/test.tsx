@@ -20,6 +20,7 @@ import { faL } from "@fortawesome/free-solid-svg-icons";
 import { audio } from "@cloudinary/url-gen/qualifiers/source";
 import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
+import { Vortex } from "./ui/vortex";
 
   const wordsgen = `
   Every single word you told me
@@ -536,9 +537,21 @@ transition: {
     </div>
     </div> */}
 
-<div className="final-notes flex items-center justify-center text-center">
- <TextGenerateEffect  words={tygen} />
- </div>
+<div className="w-full vortex mx-auto rounded-md  h-screen overflow-hidden">
+      <Vortex
+        backgroundColor="black"
+        rangeY={800}
+        particleCount={500}
+        baseHue={120}
+        className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
+      >
+        <h2 className="text-white text-2xl md:text-6xl font-bold text-center">
+      Thanks for tuning in till the end, just like the last echoes of a Tame Impala song.
+
+        </h2>
+       
+      </Vortex>
+    </div>
 
   </div>
   );
