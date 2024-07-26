@@ -16,7 +16,6 @@ import { DirectionAwareHover } from "./ui/direction-aware-hover";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import cloudinaryLoader from "../../my-loader";
 import { useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import { audio } from "@cloudinary/url-gen/qualifiers/source";
 import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
