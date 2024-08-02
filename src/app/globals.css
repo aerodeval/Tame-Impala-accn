@@ -283,8 +283,8 @@ transform: rotate(0);
 }
 
 .sun{
-  margin-top: 5%;
-  left: 81%;
+  margin-top: 4%;
+  left: 66%;
   z-index: 2;
 }
 
@@ -302,7 +302,7 @@ transform: rotate(0);
   z-index: 2;
 }
 .plan2{
-  margin-top: -15%;
+  margin-top: -2%;
   left:60%;
   z-index: 2;
 }
@@ -450,3 +450,228 @@ margin-top: 30%;
   font-size: 2.5rem;
   line-height: 4rem;
 }
+
+
+/* .hero{
+  position:absolute;
+  z-index:5;
+  top:10rem
+}
+.parallax-back{
+  position:absolute;
+  z-index:3;
+  top:20rem
+} */
+/* .parallax{
+  display:grid;
+  grid-template-areas: "stack";
+  width:100%;
+
+}
+
+.parallax > * {
+  grid-area:stack;
+  animation: parallax linear 400ms;
+  animation-timeline:scroll();
+}
+
+
+
+
+@keyframes parallax {
+
+  to{
+    transform: translateY(2000px);
+  }
+} */
+
+.bg-video{
+      object-fit: none;
+    height: 100vh;
+}
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+
+}
+
+.section {
+  height: 100vh; /* Ensures each section takes full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  position: relative;
+}
+
+.section-start {
+  height: 100vh; /* Ensures each section takes full viewport height */
+  display: flex;
+  font-size: 2em;
+  position: relative;
+}
+
+.video-section {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.4;
+}
+
+.overlay-section {
+
+  height: 100vh; /* Ensures each overlay section takes full viewport height */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.overlay-section:nth-child(2) {
+  z-index: 2;
+  
+}
+
+.overlay-section:nth-child(3) {
+  z-index: 3;
+
+
+}
+
+.overlay-section:nth-child(4) {
+  z-index: 4;
+
+  
+
+}
+
+/* .normal-section {
+  background: #cccccc;
+  color: black;
+  height: 100vh; /* Ensures the normal section takes full viewport height */
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+} */ 
+
+h1 {
+  margin: 0;
+}
+
+
+
+@font-face {
+  font-family: 'Super Funky';
+  src: url('../../public/fonts/SuperFunky.woff2') format('woff2'),
+      url('../../public/fonts/SuperFunky.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sabbia';
+  src: url('../../public/fonts/Sabbia-Regular.woff2') format('woff2'),
+      url('../../public/fonts/Sabbia-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+
+.who-ist{
+  font-family: 'Sabbia';
+  line-height: 5.5rem !important;
+  padding:55px;
+  text-align:left;
+ 
+  /* background: url('../../public/imgs/paper-3.png');
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent; */
+
+}
+
+/* 
+*,*:after,*:before{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.shape {
+  
+	background: linear-gradient(45deg, #661e03  0%, #742724 100%);
+	animation: morph 8s ease-in-out infinite;
+  border-radius: 60% 35% 70% 35% / 60% 70% 30% 70%;
+	height: 400px;
+	width: 400px;
+	box-shadow: 0 0 20px #000
+}
+.shape-inner {
+	background: linear-gradient(45deg,  #993e17  0%, #b1461d 100%);
+	animation: morph 8s ease-in-out infinite;
+	border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+	height: 200px;
+	width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.shape-inner-2 {
+	background: linear-gradient(45deg, #7f2c2c  0%, #871d1a 100%);
+	animation: morph 8s ease-in-out infinite;
+	border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+	height: 100px;
+	width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.shape-inner-3 {
+	background: linear-gradient(45deg, #85cbf9  0%, #85cbf9 100%);
+	animation: morph 8s ease-in-out infinite;
+	border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+padding:50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shape{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+@keyframes morph {
+  0% {
+    border-radius: 60% 35% 70% 35% / 60% 70% 30% 70%;
+  }
+  50% {
+    border-radius: 70% 30% 60% 40% / 70% 60% 40% 30%;
+  }
+  100% {
+    border-radius: 60% 35% 70% 35% / 60% 70% 30% 70%;
+  }
+} */

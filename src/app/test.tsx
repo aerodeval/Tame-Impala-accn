@@ -16,7 +16,6 @@ import { DirectionAwareHover } from "./ui/direction-aware-hover";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import cloudinaryLoader from "../../my-loader";
 import { useState } from "react";
-import { faL } from "@fortawesome/free-solid-svg-icons";
 import { audio } from "@cloudinary/url-gen/qualifiers/source";
 import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
@@ -272,9 +271,33 @@ export default function Home() {
    return (
   //   bg-black bg-grid-white/[0.2]
     <div className="dark  bg-black bg-grid-white/[0.2] "  >
-  <div className="h-[50rem] w-full dark:bg-black bg-white flex flex-col  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative flex items-center justify-center">
+    
+
+  <div className=""> 
+      <div className="section video-section">
+
+        <video className="bg-video" autoPlay loop muted preload="metadata">
+          <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div className="section-start overlay-section justify-start">
+      <p className="text-4xl sm:text-7xl  relative who-ist">
+   Who is Tame Impala? </p>
+      </div>
+      <div className="section overlay-section">
+      <h1>Overlay Section 2</h1>
+      </div>
+      <div className="section overlay-section">
+        <h1>Overlay Section 3</h1>
+      </div>
+
+
+ 
+</div>
+
+      
       {/* Radial gradient for the container to give a faded look */}
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
       <p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
 Hi!      </p>
 <TypewriterEffectSmooth className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8" words={words} />
@@ -287,17 +310,36 @@ Hi!      </p>
         width="1000"
         height="1000"
         className="object-cover opacity-40 object-left-top h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
-      />
-    </div>
-    <p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
+      /> */}
+ 
+    {/* <div  className="h-[100vh] w-full relative">
+
+    <p className="text-4xl sm:text-7xl testes font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
 
+    </div> */}
+    <p className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
+ Some of his work     </p>
+{/* <div className="art-div">
+ <div className="shape-container">
+	<div className="shape">
+  <div className="shape-inner">
+  <div className="shape-inner-2">
+  <div className="shape-inner-3">
+    
+    </div>
+    </div>
+    </div>
+  
+  </div>
+  </div>
+  </div> */}
 
     <div style={{marginTop:0}} className=" h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-40">
     <Tabs tabs={tabs} />
   </div>
   <div>
-  <p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
+  <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 His Journey </p>  <div className="p-10 flex items-center justify-center inline">
     
       <StickyScroll  content={content} />
