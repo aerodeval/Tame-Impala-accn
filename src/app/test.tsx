@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
+import React, { useEffect, useRef } from 'react';
 import {
   TextRevealCard,
   TextRevealCardDescription,
@@ -261,9 +262,36 @@ export default function Home() {
     });
     
   };
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const topDivRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+      const handleScroll = () => {
+          if (!containerRef.current || !topDivRef.current) return;
 
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const containerHeight = containerRef.current.clientHeight;
 
+          const revealRatio = Math.min(scrollTop / containerHeight, 1);
+          const revealAmount = 100 * revealRatio; // percentage
+
+          topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
+
+          if (revealAmount === 100) {
+            containerRef.current.classList.add('relative');
+            containerRef.current.classList.remove('fixed');
+          } else {
+            containerRef.current.classList.add('fixed');
+            containerRef.current.classList.remove('relative');
+          }
+      };
+
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+          window.removeEventListener('scroll', handleScroll);
+      };
+  }, []);
 //   const playAudio = () => {
 //     const audio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
 //     audio.play();
@@ -271,29 +299,42 @@ export default function Home() {
    return (
   //   bg-black bg-grid-white/[0.2]
     <div className="dark  bg-black bg-grid-white/[0.2] "  >
-    
+      <section className="special relative">
+    <div className="wrapper" ref={containerRef}>
+        <div className="scrollable-div">
+            <div  id="bottom-div1" className="bottom-div">
+            <div className="image-grid">
+              <div className="row-[12/24] col-[2/-1]">
+            <img src="../imgs/impalagif.gif"  fetchPriority="high" width="500" height="500" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
+            </div>
+            <div className="row-[2/10] col-[18/-2]">
+            <img src="../imgs/impalagif2.gif"  fetchPriority="high" width="498" height="396" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
+            </div>
+            </div>
+            </div>
+            <div id="top-div1" className="top-div" ref={topDivRef}>
+            <div className="image-grid">
+              <div className="row-[12/24] col-[2/-1]">
+            <img src="../imgs/impalagif-placeholder.jpg"  fetchPriority="high" width="500" height="500" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
+            </div>
+            <div className="row-[2/10] col-[18/-2]">
+            <img src="../imgs/impalagif2-placeholder.jpg"  fetchPriority="high" width="498" height="396" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
+            </div>
+            </div>
 
-  <div className=""> 
-      <div className="section video-section">
-
-        <video className="bg-video" autoPlay loop muted preload="metadata">
-          <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
-        </video>
-      </div>
-      <div className="section-start overlay-section justify-start">
-      <p className="text-4xl sm:text-7xl  relative who-ist">
-   Who is Tame Impala? </p>
-      </div>
-      <div className="section overlay-section">
-      <h1>Overlay Section 2</h1>
-      </div>
-      <div className="section overlay-section">
-        <h1>Overlay Section 3</h1>
-      </div>
-
-
- 
-</div>
+            </div>
+        </div>
+    </div>
+    <div className="scroll-section">
+    <div className="image-grid">
+              <div className="row-[12/24] col-[2/-1]">
+            <img src="../imgs/impalagif.gif"  fetchPriority="high" width="500" height="500" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
+            </div>
+            <div className="row-[2/10] col-[18/-2]">
+            <img src="../imgs/impalagif2.gif"  fetchPriority="high" width="498" height="396" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
+            </div>
+            </div>
+    </div>  </section>
 
       
       {/* Radial gradient for the container to give a faded look */}
@@ -318,6 +359,7 @@ Hi!      </p>
  Some of his work     </p>
 
     </div> */}
+    <section className="next-section" >
     <p className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
 {/* <div className="art-div">
@@ -338,6 +380,7 @@ Hi!      </p>
     <div style={{marginTop:0}} className=" h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-40">
     <Tabs tabs={tabs} />
   </div>
+  </section>
   <div>
   <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 His Journey </p>  <div className="p-10 flex items-center justify-center inline">
