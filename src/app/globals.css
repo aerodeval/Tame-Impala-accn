@@ -602,15 +602,25 @@ h1 {
 }
 
 
+.top-text {
+  filter: drop-shadow(3px 2px 0px #562064);}
+
+
+  
+.bottom-text {
+
+  filter: drop-shadow(3px 2px 0px #D30131);}
 
 
 .who-ist{
   font-family: 'Balvine Demo';
   line-height: 5.5rem !important;
-  padding:55px;
+  margin-top: 10rem;
+  margin-left: 15rem;
   text-align:left;
-  z-index: 10;
-  position: absolute;
+
+
+
   /* background: url('../../public/imgs/paper-3.png');
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -684,33 +694,29 @@ padding:50px;
   100% {
     border-radius: 60% 35% 70% 35% / 60% 70% 30% 70%;
   }
-} */
-body, html {
+} */body, html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
-  overflow-y: auto; /* Enable vertical scrolling when content exceeds viewport height */
-  height: 200vh;
- 
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  scrollbar-width: none; /* Firefox */
+
 }
-
-
 
 
 .wrapper {
-  /* position: fixed; */
-  height: 100vh;
+
+  top: 0;
   width: 100%;
+  height: 100vh; /* Ensure full viewport height */
   overflow: hidden;
-  transition: opacity 0.5s, position 0.5s;
 }
-
-
 
 .scrollable-div {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 .bottom-div, .top-div {
@@ -719,39 +725,44 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-
-  font-size: 2rem;
-  color: white;
-  transition: clip-path 0.5s ease;
   overflow: hidden;
+  transition: clip-path 0.5s ease, opacity 0.5s ease;
 }
 
+.top-div {
+  clip-path: inset(0 0 100% 0); /* Start hidden */
+}
+
+.special {
+  height: 100vh;
+  position: relative;
+}
 .bottom-div {
   background-image: url('../../public/imgs/new-bg-intro.png');
   display: grid;
   grid-template-rows: repeat(24,1fr);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.special{
+/* .special{
   height: 200vh;
-}
+} */
 .top-div {
   background-image: url('../../public/imgs/new-bg-intro.png');
   display: grid;
   grid-template-rows: repeat(24,1fr);
   clip-path: inset(0 0 0 0);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 body {
   scroll-behavior: smooth;
 }
 
-.scroll-section {
-  height: 100vh;
-  background: #3498db;;
-  background-image: url('../../public/imgs/new-bg-intro.png');
-  font-size: 2rem;
-  color: white;
-}
+
 .fixed {
   position: fixed;
 }
@@ -764,5 +775,6 @@ body {
   display: grid;
   grid-template-rows: repeat(24,1fr);
   grid-template-columns: repeat(24,1fr);
+  max-height: 100vh;
 }
 

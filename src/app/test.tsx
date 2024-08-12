@@ -21,6 +21,7 @@ import { audio } from "@cloudinary/url-gen/qualifiers/source";
 import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
 import { Vortex } from "./ui/vortex";
+import ScrollComponent from "./ScrollComponent";
 
   const wordsgen = `
   Every single word you told me
@@ -262,36 +263,6 @@ export default function Home() {
     });
     
   };
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const topDivRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-      const handleScroll = () => {
-          if (!containerRef.current || !topDivRef.current) return;
-
-          const scrollTop = window.scrollY || document.documentElement.scrollTop;
-          const containerHeight = containerRef.current.clientHeight;
-
-          const revealRatio = Math.min(scrollTop / containerHeight, 1);
-          const revealAmount = 100 * revealRatio; // percentage
-
-          topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
-
-          if (revealAmount === 100) {
-            containerRef.current.classList.add('relative');
-            containerRef.current.classList.remove('fixed');
-          } else {
-            containerRef.current.classList.add('fixed');
-            containerRef.current.classList.remove('relative');
-          }
-      };
-
-      window.addEventListener('scroll', handleScroll);
-
-      return () => {
-          window.removeEventListener('scroll', handleScroll);
-      };
-  }, []);
 //   const playAudio = () => {
 //     const audio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
 //     audio.play();
@@ -299,42 +270,16 @@ export default function Home() {
    return (
   //   bg-black bg-grid-white/[0.2]
     <div className="dark  bg-black bg-grid-white/[0.2] "  >
-      <section className="special relative">
-    <div className="wrapper" ref={containerRef}>
-        <div className="scrollable-div">
-            <div  id="bottom-div1" className="bottom-div">
-            <div className="image-grid">
-              <div className="row-[12/24] col-[2/-1]">
-            <img src="../imgs/impalagif.gif"  fetchPriority="high" width="500" height="500" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
-            </div>
-            <div className="row-[2/10] col-[18/-2]">
-            <img src="../imgs/impalagif2.gif"  fetchPriority="high" width="498" height="396" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
-            </div>
-            </div>
-            </div>
-            <div id="top-div1" className="top-div" ref={topDivRef}>
-            <div className="image-grid">
-              <div className="row-[12/24] col-[2/-1]">
-            <img src="../imgs/impalagif-placeholder.jpg"  fetchPriority="high" width="500" height="500" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
-            </div>
-            <div className="row-[2/10] col-[18/-2]">
-            <img src="../imgs/impalagif2-placeholder.jpg"  fetchPriority="high" width="498" height="396" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
-            </div>
-            </div>
+   <section> <ScrollComponent ></ScrollComponent></section>
+   <section>
+   <div className="section video-section">
 
-            </div>
-        </div>
-    </div>
-    <div className="scroll-section">
-    <div className="image-grid">
-              <div className="row-[12/24] col-[2/-1]">
-            <img src="../imgs/impalagif.gif"  fetchPriority="high" width="500" height="500" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
-            </div>
-            <div className="row-[2/10] col-[18/-2]">
-            <img src="../imgs/impalagif2.gif"  fetchPriority="high" width="498" height="396" decoding="async"  className=" h-full object-cover " style={{color:"transparent"}}  />
-            </div>
-            </div>
-    </div>  </section>
+<video className="bg-video" autoPlay loop muted preload="metadata">
+  <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />
+</video>
+</div>
+   </section>
+
 
       
       {/* Radial gradient for the container to give a faded look */}
@@ -359,7 +304,7 @@ Hi!      </p>
  Some of his work     </p>
 
     </div> */}
-    <section className="next-section" >
+    <section className="next-section relative" >
     <p className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
 {/* <div className="art-div">
@@ -381,6 +326,7 @@ Hi!      </p>
     <Tabs tabs={tabs} />
   </div>
   </section>
+  <section>
   <div>
   <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 His Journey </p>  <div className="p-10 flex items-center justify-center inline">
@@ -388,7 +334,8 @@ His Journey </p>  <div className="p-10 flex items-center justify-center inline">
       <StickyScroll  content={content} />
     
     </div>
-  </div>
+  </div></section>
+  <section>
 <div className="test">
   <div  className=" h-[40rem] relative  flex items-center justify-center">
       <DirectionAwareHover imageUrl={imageUrl}>
@@ -413,6 +360,9 @@ His Journey </p>  <div className="p-10 flex items-center justify-center inline">
       </DirectionAwareHover>
     </div>
     </div>
+    </section>
+
+    <section>
   <div className="flex items-center justify-center bg-black dark:bg-grid-white/[0.2] h-[40rem] rounded-2xl w-full">
       <TextRevealCard
         text="REAL NAME [LEAKED]"
@@ -426,13 +376,15 @@ His Journey </p>  <div className="p-10 flex items-center justify-center inline">
         </TextRevealCardDescription>
       </TextRevealCard>
     </div>
-    <div>
-    <p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
+
+    </section>
+    <section><p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 As Kevin said himself</p>
 
 <div className="lyrics-display flex items-center justify-center text-center">
  <TextGenerateEffect  words={wordsgen} />
- </div>
+ </div></section>
+<section>
 
  <div className="hspiral-container relative flex items-center justify-center"onClick={handleImageClick} >
 
@@ -605,7 +557,7 @@ transition: {
 
 
 
-    </div>
+</section>
     
 
     {/* <div>
@@ -621,7 +573,7 @@ transition: {
       </p>
     </div>
     </div> */}
-
+<section>
 <div className="w-full vortex mx-auto rounded-md  h-screen overflow-hidden">
       <Vortex
         backgroundColor="black"
@@ -637,7 +589,7 @@ transition: {
        
       </Vortex>
     </div>
-
+    </section>
   </div>
   );
 }
