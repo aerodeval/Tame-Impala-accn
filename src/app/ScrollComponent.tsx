@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function ScrollComponent() {
@@ -54,17 +55,17 @@ export default function ScrollComponent() {
   }, [scrollPosition, revealComplete]);
 
   return (
-    <section className="special">
+    <section  className="special">
       <div className="wrapper" ref={containerRef} style={{ transform: `translate3d(0, 0, 0)` }}>
         <div id="bottom-div1" className="bottom-div">
-   
+            <p className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+                  Who is Tame Impala?
+                </p>
           <div>
             <div className="image-grid">
               <div className="row-[12/24] col-[2/-1] image-top">
-                <p className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
-                  Who is Tame Impala?
-                </p>
-                <img
+       
+                <img alt='impala-gif-1'
                   src="../imgs/impalagif.gif"
                   fetchPriority="high"
                   decoding="async"
@@ -73,7 +74,7 @@ export default function ScrollComponent() {
                 />
               </div>
               <div className="row-[2/24] col-[18/-2] image-bottom">
-                <img
+                <img alt='impala-gif-2'
                   src="../imgs/impalagif2.gif"
                   fetchPriority="high"
                   decoding="async"
@@ -82,7 +83,7 @@ export default function ScrollComponent() {
                 />
               </div>
               <div className="row-[3/10] col-[2/-1] image-bottom">
-                <img
+                <img alt='impala-gif-1'
                   src="../imgs/impalagif3.gif"
                   fetchPriority="high"
                   decoding="async"
@@ -94,12 +95,13 @@ export default function ScrollComponent() {
           </div>
         </div>
         <div id="top-div1" className="top-div" ref={topDivRef}>
-          <div className="image-grid">
-            <div className="row-[12/24] col-[2/-1] image-top">
-              <p className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
+        <p className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
                 Who is Tame Impala?
               </p>
-              <img
+          <div className="image-grid">
+            <div className="row-[12/24] col-[2/-1] image-top">
+           
+              <img alt='img-gif1-placeholder'
                 src="../imgs/impalagif-placeholder.jpg"
                 fetchPriority="high"
                 decoding="async"
@@ -108,7 +110,7 @@ export default function ScrollComponent() {
               />
             </div>
             <div className="row-[2/24] col-[18/-2] image-bottom">
-              <img
+              <img alt='img-gif2-placeholder'
                 src="../imgs/impalagif2-placeholder.jpg"
                 fetchPriority="high"
                 decoding="async"
@@ -117,7 +119,7 @@ export default function ScrollComponent() {
               />
             </div>
             <div className="row-[3/10] col-[2/-1] image-bottom">
-              <img
+              <img alt='img-gif3-placeholder'
                 src="../imgs/impalagif3.png"
                 fetchPriority="high"
                 decoding="async"

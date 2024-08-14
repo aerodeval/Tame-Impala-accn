@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -22,6 +23,7 @@ import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
 import { Vortex } from "./ui/vortex";
 import ScrollComponent from "./ScrollComponent";
+
 
   const wordsgen = `
   Every single word you told me
@@ -263,6 +265,60 @@ export default function Home() {
     });
     
   };
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const topDivRef = useRef<HTMLDivElement | null>(null);
+
+  const textRef =useRef<HTMLParagraphElement | null>(null);
+  const [revealComplete, setRevealComplete] = useState(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = (event: WheelEvent) => {
+      if (!containerRef.current || !topDivRef.current) return;
+
+  
+
+      const deltaY = event.deltaY;
+      const containerHeight = containerRef.current.clientHeight;
+      const windowHeight = window.innerHeight;
+
+      if (!revealComplete) {
+        // Stage 1: Reveal effect
+        const newScrollPosition = scrollPosition + deltaY;
+        const revealRatio = Math.min(newScrollPosition / windowHeight, 1);
+        const revealAmount = revealRatio * 100;
+
+        topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
+        if (revealAmount === 100) {
+          containerRef.current.style.position = 'relative';
+        } else {
+          containerRef.current.style.position = 'fixed';
+          containerRef.current.style.top = '0';
+        }
+
+        if (revealAmount >= 100) {
+          setRevealComplete(true);
+        }
+
+        setScrollPosition(newScrollPosition);
+      } else {
+        // Stage 2: Translate effect
+        const maxTranslateY = containerHeight - windowHeight;
+        let newTranslateY = scrollPosition - windowHeight + deltaY;
+
+        newTranslateY = Math.max(-maxTranslateY, Math.min(0, newTranslateY));
+        setScrollPosition(newTranslateY);
+        containerRef.current.style.transform = `translate3d(0, ${newTranslateY}px, 0)`;
+      }
+    };
+
+    window.addEventListener('wheel', handleScroll, { passive: false });
+
+    return () => {
+      window.removeEventListener('wheel', handleScroll);
+    };
+  }, [scrollPosition, revealComplete]);
 //   const playAudio = () => {
 //     const audio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
 //     audio.play();
@@ -270,15 +326,92 @@ export default function Home() {
    return (
   //   bg-black bg-grid-white/[0.2]
     <div className="dark  bg-black bg-grid-white/[0.2] "  >
-   <section> <ScrollComponent ></ScrollComponent></section>
-   <section>
-   <div className="section video-section">
+       <section  className="special">
+      <div className="wrapper" ref={containerRef} style={{ transform: `translate3d(0, 0, 0)` }}>
+        <div id="bottom-div1" className="bottom-div">
+            <p className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+                  Who is Tame Impala?
+                </p>
+          <div>
+            <div className="image-grid">
+              <div className="row-[12/24] col-[2/-1] image-top">
+       
+                <img alt='impala-gif-1'
+                  src="../imgs/impalagif.gif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[2/24] col-[18/-2] image-bottom">
+                <img alt='impala-gif-2'
+                  src="../imgs/impalagif2.gif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[3/10] col-[2/-1] image-bottom">
+                <img alt='impala-gif-1'
+                  src="../imgs/impalagif3.gif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="top-div1" className="top-div" ref={topDivRef}>
+        <p className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
+                Who is Tame Impala?
+              </p>
+          <div className="image-grid">
+            <div className="row-[12/24] col-[2/-1] image-top">
+           
+              <img alt='img-gif1-placeholder'
+                src="../imgs/impalagif-placeholder.jpg"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full object-cover"
+                style={{ color: 'transparent' }}
+              />
+            </div>
+            <div className="row-[2/24] col-[18/-2] image-bottom">
+              <img alt='img-gif2-placeholder'
+                src="../imgs/impalagif2-placeholder.jpg"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full object-cover"
+                style={{ color: 'transparent' }}
+              />
+            </div>
+            <div className="row-[3/10] col-[2/-1] image-bottom">
+              <img alt='img-gif3-placeholder'
+                src="../imgs/impalagif3.png"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full object-cover"
+                style={{ color: 'transparent' }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<section>
+  <div className="section video-section relative">
+  
+    <div className="absolute inset-0 bg-black opacity-50 z-0"></div> {/* Dark overlay */}
+    <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
+      <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />
+    </video>
+  </div>
+</section>
 
-<video className="bg-video" autoPlay loop muted preload="metadata">
-  <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />
-</video>
-</div>
-   </section>
 
 
       
@@ -304,7 +437,7 @@ Hi!      </p>
  Some of his work     </p>
 
     </div> */}
-    <section className="next-section relative" >
+    <section className="next-section" >
     <p className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
 {/* <div className="art-div">
