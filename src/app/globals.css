@@ -170,17 +170,15 @@ transition: transform 2s ease-out;
 /* .vinyl-container:hover{
 transform: scale(1.1);
 } */
-.vinylcontainer{
-
-  .packcontainer{
-   animation: vanish 4s forwards;
-  }
-  .hypnotic-spiral{
-    animation: straight 4s forwards, spin 45s forwards;
-  }
+.vinylcontainer {
   transform: scale(1.1);
 }
-
+.vinylcontainer .packcontainer {
+  animation: vanish 4s forwards;
+}
+.vinylcontainer .hypnotic-spiral {
+  animation: straight 4s forwards, spin 45s forwards;
+}
 /* .hypnotic-spiral::before {
   content: "";
   position: absolute;
@@ -505,6 +503,14 @@ body, html {
   font-size: 2em;
   position: relative;
 }
+.section-psy {
+  height: 100vh; /* Ensures each section takes full viewport height */
+  display: flex;
+ 
+  align-items: center;
+  font-size: 2em;
+  position: relative;
+}
 
 .section-start {
   height: 100vh; /* Ensures each section takes full viewport height */
@@ -637,7 +643,9 @@ h1 {
   text-fill-color: transparent; */
 
 }
-
+.top-div{
+  z-index: 1001;
+}
 /* 
 *,*:after,*:before{
 	-webkit-box-sizing: border-box;
@@ -785,5 +793,32 @@ body {
   grid-template-rows: repeat(24,1fr);
   grid-template-columns: repeat(24,1fr);
   max-height: 100vh;
+}
+
+.get-lost{
+  font-family: ITC Serif Gothic Std;
+}
+
+.get-lost-para{
+  font-family: 'HWT Unit Gothic 719';
+}
+
+@font-face {
+  font-family: 'ITC Serif Gothic Std';
+  src: url('../../public/fonts/SerifGothicStd-Black.woff2') format('woff2'),
+      url('../../public/fonts/SerifGothicStd-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'HWT Unit Gothic 719';
+  src:url('../../public/fonts/HWTUnitGothic.woff2') format('woff2'),
+      url('../../public/fonts/HWTUnitGothic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 

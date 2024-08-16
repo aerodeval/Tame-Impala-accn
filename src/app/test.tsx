@@ -268,7 +268,7 @@ export default function Home() {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const topDivRef = useRef<HTMLDivElement | null>(null);
-
+  const [scrolledY, setScrolledY] = useState(0);
   const textRef =useRef<HTMLParagraphElement | null>(null);
   const [revealComplete, setRevealComplete] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -292,6 +292,7 @@ export default function Home() {
         topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
         if (revealAmount === 100) {
           containerRef.current.style.position = 'relative';
+
         } else {
           containerRef.current.style.position = 'fixed';
           containerRef.current.style.top = '0';
@@ -299,6 +300,7 @@ export default function Home() {
 
         if (revealAmount >= 100) {
           setRevealComplete(true);
+      
         }
 
         setScrollPosition(newScrollPosition);
@@ -319,6 +321,10 @@ export default function Home() {
       window.removeEventListener('wheel', handleScroll);
     };
   }, [scrollPosition, revealComplete]);
+
+
+
+  
 //   const playAudio = () => {
 //     const audio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
 //     audio.play();
@@ -329,7 +335,7 @@ export default function Home() {
        <section  className="special">
       <div className="wrapper" ref={containerRef} style={{ transform: `translate3d(0, 0, 0)` }}>
         <div id="bottom-div1" className="bottom-div">
-            <p className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+            <p ref={textRef} className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
                   Who is Tame Impala?
                 </p>
           <div>
@@ -403,8 +409,12 @@ export default function Home() {
       </div>
     </section>
 <section>
-  <div className="section video-section relative">
-  
+  <div className="section-psy video-section relative flex justify-start p-10">
+    <div className="flex flex-col absolute z-10 w-1/2 ">
+  <h1  className="text-2xl sm:text-8xl font-bold  z-10 get-lost  text-[#7fff00]">
+  Get Lost in the Psychedelia:</h1>
+  <span className=" get-lost-para z-10">Tame Impalas Top Hits </span>
+  </div>
     <div className="absolute inset-0 bg-black opacity-50 z-0"></div> {/* Dark overlay */}
     <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
       <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />

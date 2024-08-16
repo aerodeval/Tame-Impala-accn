@@ -94,7 +94,7 @@ export default function ScrollComponent() {
             </div>
           </div>
         </div>
-        <div id="top-div1" className="top-div" ref={topDivRef}>
+        <div id="top-div1" className="top-div z-[1000]" ref={topDivRef}>
         <p className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
                 Who is Tame Impala?
               </p>
