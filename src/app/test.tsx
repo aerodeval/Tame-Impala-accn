@@ -4,7 +4,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
+import {Spotify} from "react-spotify-embed"
 import React, { useEffect, useRef } from 'react';
+
 import {
   TextRevealCard,
   TextRevealCardDescription,
@@ -24,16 +26,16 @@ import { PinContainer } from "./ui/3d-pin";
 import { Vortex } from "./ui/vortex";
 import ScrollComponent from "./ScrollComponent";
 
-
+const isClicked= false;
   const wordsgen = `
-  Every single word you told me
-  I believed without a question, always
-  To save all of us
-  You told us both to trust
-  But now I know you only saved yourself
+Ever since I was a small boy
+No one else compared to you, no way
+I always thought heroes stayed close
+Whenever troubled times arose
+I didn't know
+Ain't always how it goes
   `;
 
-  const tygen = `Thanks for tuning in till the end, just like the last echoes of a Tame Impala song.`;
 const words = [
   {
     text: "Did",
@@ -236,24 +238,33 @@ export default function Home() {
   };
 
   const handleImageClick = () => {
+    const durationInSeconds = 75; // The duration you want to play the audio for
+  
     if (!isSpinning) {
       const newAudio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
       setAudio(newAudio);
+  
       setTimeout(() => {
-        newAudio.play(); 
+        newAudio.play();
       }, delayInMillis);
-
-// Start playing audio
+  
+      // Stop the audio after the specified duration
+      setTimeout(() => {
+        newAudio.pause();
+        newAudio.currentTime = 0; // Reset audio to the beginning if needed
+        setIsSpinning(false);
+      }, durationInSeconds * 1000);
+  
       setIsSpinning(true);
+      setTriggerAnimation(true);
     } else {
       if (audio) {
         setIsSpinning(false);
         audio.pause(); // Pause audio playback
-        
-    }
+      }
     }
   };
-
+  
   const handleDivClick = () => {
     const element = document.querySelector('.vinyl-container');
     element!.classList.add('vinylcontainer');
@@ -272,6 +283,8 @@ export default function Home() {
   const textRef =useRef<HTMLParagraphElement | null>(null);
   const [revealComplete, setRevealComplete] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [triggerAnimation, setTriggerAnimation] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
@@ -409,11 +422,16 @@ export default function Home() {
       </div>
     </section>
 <section>
-  <div className="section-psy video-section relative flex justify-start p-10">
-    <div className="flex flex-col absolute z-10 w-1/2 ">
-  <h1  className="text-2xl sm:text-8xl font-bold  z-10 get-lost  text-[#7fff00]">
+  <div className="section-psy video-section relative flex justify-start ">
+    <div className="absolute z-10 flex container mx-auto">
+    <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
+  <h1  className="text-2xl sm:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
   Get Lost in the Psychedelia:</h1>
-  <span className=" get-lost-para z-10">Tame Impalas Top Hits </span>
+  <span className=" get-lost-para z-10">Tame Impalas Top Hits (personally approved)</span>
+  </div>
+  <div className="flex flex-col w-2/3   ">
+  <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
+  </div>
   </div>
     <div className="absolute inset-0 bg-black opacity-50 z-0"></div> {/* Dark overlay */}
     <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
@@ -495,8 +513,8 @@ His Journey </p>  <div className="p-10 flex items-center justify-center inline">
       </DirectionAwareHover>
     </div>
     </div>
-    <div className="test-zag">
-  <div  className=" h-[40rem] relative  flex items-center justify-center">
+    <div className="test-zag mb-[15rem]">
+  <div  className=" h-[40rem] relative  flex items-center justify-center ">
       <DirectionAwareHover imageUrl={imageUrl3}>
         <p className="font-bold text-xl">In the mountains</p>
         <p className="font-normal text-sm">1679</p>
@@ -505,37 +523,23 @@ His Journey </p>  <div className="p-10 flex items-center justify-center inline">
     </div>
     </section>
 
-    <section>
-  <div className="flex items-center justify-center bg-black dark:bg-grid-white/[0.2] h-[40rem] rounded-2xl w-full">
-      <TextRevealCard
-        text="REAL NAME [LEAKED]"
-        revealText="Kevin Parker"
-      >
-        <TextRevealCardTitle>
-          Sometimes, you just need to see it.
-        </TextRevealCardTitle>
-        <TextRevealCardDescription>
-          Hover over the card to know who is Tame Impala
-        </TextRevealCardDescription>
-      </TextRevealCard>
-    </div>
-
-    </section>
-    <section><p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
+    {/* <section><p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 As Kevin said himself</p>
 
 <div className="lyrics-display flex items-center justify-center text-center">
  <TextGenerateEffect  words={wordsgen} />
- </div></section>
-<section>
+ </div></section> */}
+<section className="flex justify-center" >
+  <div className="columns-2 mb-6">
 
- <div className="hspiral-container relative flex items-center justify-center"onClick={handleImageClick} >
+  <div >
+ <div className="hspiral-container relative flex items-center justify-center "onClick={handleImageClick} >
 
  <WavyBackground className="bg-opac max-w-4xl mx-auto pb-40 "></WavyBackground>
 <div  className="vinyl-container"    onClick={handleDivClick}>
     <div className="h-[4rem] bg-white packcontainer" >
          </div>
-    <div className="vinyl-image">
+
       
 <Image
         src="/impalavinyl"
@@ -546,161 +550,176 @@ As Kevin said himself</p>
         
       />
    
+
+
+
+
 </div>
-
-
-
 </div>
 </div>
-<div   onClick={handlePlanetClick} className="finalscreen relative flex items-center justify-center ">
-  {/* <Image
-  className="checkered-pattern absolute "
-  src="/pattern_checkerboard_1_2_0-0_0_1__008a6c_44669c_y33ijk"
-  alt="dummy image"
-  width="1000"
-  height="900"
-  
-  style={{  width:'auto',height:'auto'}}
-  /> */}
- 
-<motion.img
-         className="absolute bgspace"
-         src="../imgs/bgspace.png"
-         alt="dummy image"
-       
-         style={{  zIndex:1}}
-  
-  
-    />
+<div className="h-full flex justify-center flex-col">
+<p   className={`text-2xl sm:text-5xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pb-3 items-center text-center justify-center ${
+    triggerAnimation ? "what-he-said" : "what-was-said"
+  }`}>
+As Kevin said himself</p>
 
-<motion.img
-         className="absolute man"
-         src="../imgs/man.png"
-         alt="dummy image"
-         width="1000"
-         height="1000"
-         
-      animate={{
-        x: [0, 0, 0], // Keyframes for horizontal movement
-        y: [5, -5, 5], // Keyframes for vertical movement (no movement in this example)
-        transition: {
-          duration: 2, // Total duration of the animation
-          ease: 'easeInOut', // Easing function
-         repeat:Infinity,// Loop the animation indefinitely
-          repeatDelay: 1, // Delay between each loop iteration
-        },
-      }}
-    />
- 
+<div className="lyrics-display flex items-center justify-center pl-10 ">
 
-<motion.img
-         className="absolute sun scler"
-         src="../imgs/sun.png"
-         alt="dummy image"
-         
-         style={{ maxWidth: '20%',height:'auto' }}
-      animate={{
-        x: [-20, 20, -20], // Keyframes for horizontal movement
-        y: [0, 0, 0], // Keyframes for vertical movement (no movement in this example)
-        transition: {
-          duration: 2, // Total duration of the animation
-          ease: 'easeInOut', // Easing function
-         repeat:Infinity,// Loop the animation indefinitely
-          repeatDelay: 1, // Delay between each loop iteration
-        },
-      }}
-    />
- 
-
- 
-<motion.img
-             className="absolute plan1 scler"
-             src="../imgs/planet1.png"
-         alt="dummy image"
- 
-  style={{ maxWidth: '20%',height:'auto' }}
-  animate={{
-        x: [-10, 10, -10], // Keyframes for horizontal movement
-        y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
-        transition: {
-          duration: 2, // Total duration of the animation
-          ease: 'easeInOut', // Easing function
-          repeat:Infinity,// Loop the animation indefinitely
-
-        },
-      }}
-    />
-
-<motion.img
-             className="absolute plan2 scler"
-             src="../imgs/layer 3.png"
-         alt="dummy image"
-   
-         style={{  maxWidth: '20%',height:'auto' }}
-      animate={{
-        x: [-10, 10, -10], // Keyframes for horizontal movement
-        y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
-        transition: {
-          duration: 2, // Total duration of the animation
-          ease: 'easeInOut', // Easing function
-          repeat:Infinity,// Loop the animation indefinitely
-
-        },
-      }}
-    />
-    <motion.img
-             className="absolute plan11 scler"
-             src="../imgs/layer 8.png"
-         alt="dummy image"
-  style={{ maxWidth: '20%',height:'auto' }}
-  animate={{
-        x: [-10, 10, -10], // Keyframes for horizontal movement
-        y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
-        transition: {
-          duration: 2, // Total duration of the animation
-          ease: 'easeInOut', // Easing function
-          repeat:Infinity,// Loop the animation indefinitely
-
-        },
-      }}
-    />  <motion.img
-    className="absolute plan9 scler"
-    src="../imgs/layer 9.png"
-alt="dummy image"
-style={{ maxWidth: '20%',height:'auto' }}
-animate={{
-x: [-10, 10, -10], // Keyframes for horizontal movement
-y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
-transition: {
- duration: 2, // Total duration of the animation
- ease: 'easeInOut', // Easing function
- repeat:Infinity,// Loop the animation indefinitely
-
-},
-}}
-/>
-<motion.img
-    className="absolute plan12 scler"
-    src="../imgs/layer 11.png"
-alt="dummy image"
-style={{ maxWidth: '20%',height:'auto' }}
-animate={{
-x: [-10, 10, -10], // Keyframes for horizontal movement
-y: [10, 10, 10], // Keyframes for vertical movement (no movement in this example)
-transition: {
- duration: 2, // Total duration of the animation
- ease: 'easeInOut', // Easing function
- repeat:Infinity,// Loop the animation indefinitely
-
-},
-}}
-/>
-   
+ <TextGenerateEffect isClicked={isSpinning}  words={wordsgen} />
 </div>
-
-
+</div></div>
 
 </section>
+
+<div className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
+  <Vortex
+    backgroundColor="black"
+    rangeY={800}
+    particleCount={500}
+    baseHue={120}
+    className="flex items-center flex-col justify-center px-2 md:px-10 relative py-4 w-full h-full"
+  >
+    <div
+      onClick={handlePlanetClick}
+      className="finalscreen absolute z-20 flex items-center justify-center w-full h-full"
+    >
+      {/* <Image
+        className="checkered-pattern absolute"
+        src="/pattern_checkerboard_1_2_0-0_0_1__008a6c_44669c_y33ijk"
+        alt="dummy image"
+        width="1000"
+        height="900"
+        style={{ width: 'auto', height: 'auto' }}
+      /> */}
+
+      <motion.img
+        className="absolute bgspace"
+        src="../imgs/bgspace.png"
+        alt="dummy image"
+        style={{ zIndex: 1 }}
+      />
+
+      <motion.img
+        className="absolute man"
+        src="../imgs/man.png"
+        alt="dummy image"
+        width="1000"
+        height="1000"
+        animate={{
+          x: [0, 0, 0],
+          y: [5, -5, 5],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatDelay: 1,
+          },
+        }}
+      />
+
+      <motion.img
+        className="absolute sun scler"
+        src="../imgs/sun.png"
+        alt="dummy image"
+        style={{ maxWidth: '20%', height: 'auto', zIndex: 2 }}
+        animate={{
+          x: [-20, 20, -20],
+          y: [0, 0, 0],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatDelay: 1,
+          },
+        }}
+      />
+
+      <motion.img
+        className="absolute plan1 scler"
+        src="../imgs/planet1.png"
+        alt="dummy image"
+        style={{ maxWidth: '20%', height: 'auto', zIndex: 3 }}
+        animate={{
+          x: [-10, 10, -10],
+          y: [10, 10, 10],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          },
+        }}
+      />
+
+      <motion.img
+        className="absolute plan2 scler"
+        src="../imgs/layer 3.png"
+        alt="dummy image"
+        style={{ maxWidth: '20%', height: 'auto', zIndex: 4 }}
+        animate={{
+          x: [-10, 10, -10],
+          y: [10, 10, 10],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          },
+        }}
+      />
+
+      <motion.img
+        className="absolute plan11 scler"
+        src="../imgs/layer 8.png"
+        alt="dummy image"
+        style={{ maxWidth: '20%', height: 'auto', zIndex: 5 }}
+        animate={{
+          x: [-10, 10, -10],
+          y: [10, 10, 10],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          },
+        }}
+      />
+
+      <motion.img
+        className="absolute plan9 scler"
+        src="../imgs/layer 9.png"
+        alt="dummy image"
+        style={{ maxWidth: '20%', height: 'auto', zIndex: 6 }}
+        animate={{
+          x: [-10, 10, -10],
+          y: [10, 10, 10],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          },
+        }}
+      />
+
+      <motion.img
+        className="absolute plan12 scler"
+        src="../imgs/layer 11.png"
+        alt="dummy image"
+        style={{ maxWidth: '20%', height: 'auto', zIndex: 7 }}
+        animate={{
+          x: [-10, 10, -10],
+          y: [10, 10, 10],
+          transition: {
+            duration: 2,
+            ease: 'easeInOut',
+            repeat: Infinity,
+          },
+        }}
+      />
+    </div>
+  </Vortex>
+</div>
+
+
+
+
     
 
     {/* <div>
@@ -716,7 +735,7 @@ transition: {
       </p>
     </div>
     </div> */}
-<section>
+{/* <section>
 <div className="w-full vortex mx-auto rounded-md  h-screen overflow-hidden">
       <Vortex
         backgroundColor="black"
@@ -732,7 +751,7 @@ transition: {
        
       </Vortex>
     </div>
-    </section>
+    </section> */}
   </div>
   );
 }

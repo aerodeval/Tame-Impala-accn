@@ -105,25 +105,28 @@ body {
   }
 }
 .packcontainer{
-  margin-right: 22rem;
+
   transform: skewY(10deg);
     height: 24rem;
-    margin-top: 15rem;
+ 
     width: 23rem;
     background-image: url('https://res.cloudinary.com/dm3ienizb/image/upload/v1712063830/crumbled-paper.png');
 
 
 }
 .vinyl-container{
-  position: relative;
+position: absolute;
+top: 24%;
+right: 35%;
   /* overflow: hidden; */
   z-index: 1;
   transition: transform 2s ease;
+  transform: scale(0.9);
 
 }
 .hypnotic-spiral {
   transform: skewY(15deg);
-  left: 12rem;
+  left: 10rem;
   top: -21rem;
   width: 21rem;
   z-index: -1;
@@ -151,7 +154,9 @@ body {
 }
 
 .hspiral-container{
- 
+  border-radius: 50px;
+ margin-left: 5rem;
+ margin-bottom: 2rem;
 overflow: hidden;
 
   /* z-index: -2; */
@@ -170,14 +175,12 @@ transition: transform 2s ease-out;
 /* .vinyl-container:hover{
 transform: scale(1.1);
 } */
-.vinylcontainer {
-  transform: scale(1.1);
-}
+
 .vinylcontainer .packcontainer {
   animation: vanish 4s forwards;
 }
 .vinylcontainer .hypnotic-spiral {
-  animation: straight 4s forwards, spin 45s forwards;
+  animation: straight 4s forwards, spin 80s forwards;
 }
 /* .hypnotic-spiral::before {
   content: "";
@@ -204,7 +207,7 @@ transform: rotate(0);
   }
 100% {
 
-    transform: rotate(7turn)
+    transform: rotate(20turn)
   }
 }
 
@@ -229,7 +232,7 @@ transform: rotate(0);
 
 .spin-animation{
 
-  animation: spin 45s forwards;
+  animation: spin infinite forwards;
 }
 
 @keyframes opac {  0% {
@@ -265,9 +268,9 @@ transform: rotate(0);
 .wavey{
   opacity: 0;
 }
-.vortex{
+/* .vortex{
   margin-top: 25rem;
-}
+} */
 /* 
 .checkered-pattern{
   width: 100%;
@@ -334,9 +337,9 @@ transform: rotate(0);
 
 .finalscreen{
 
-margin-top: 30%;
 
-  transform: rotate3d(3, 1, 1, 301deg);
+
+  transform: rotate3d(3, 1, 1, 301deg) scale(0.7);
 }
 
 .plan11{
@@ -391,15 +394,23 @@ margin-top: 30%;
  
 }
 
+@media  (max-width:900px){
+
+  .vinyl-container{
+    top:8%;
+  }
+
+
+}
 
 
  
 
 
  @media  (max-width:500px){
-  .vortex{
+  /* .vortex{
     margin-top: 10rem;
-  }
+  } */
   .final-notes{
     padding-top: 10rem;
   }
@@ -407,7 +418,7 @@ margin-top: 30%;
   transform: scale(0.4);
 }
 .packcontainer{
-  margin-right: 14rem;
+
 }
   .bgspace {
     max-height: 700px;
@@ -443,11 +454,11 @@ margin-top: 30%;
   
 
 }
-
+/* 
 .vortex{
   font-size: 2.5rem;
   line-height: 4rem;
-}
+} */
 
 
 /* .hero{
@@ -822,3 +833,13 @@ body {
   font-display: swap;
 }
 
+.what-he-said {
+
+  transform: translateY(0);
+  transition:  transform 2s ease-in-out;
+}
+
+.what-was-said {
+
+  transform: translateY(200px);
+}
