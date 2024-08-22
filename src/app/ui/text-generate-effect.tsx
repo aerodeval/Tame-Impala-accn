@@ -24,7 +24,7 @@ console.log(isClicked)
       },
       {
         duration: 8,
-        delay: stagger(0.2),
+        delay: stagger(1),
       }
     );
   

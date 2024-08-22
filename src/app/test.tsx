@@ -6,6 +6,12 @@ import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
 import {Spotify} from "react-spotify-embed"
 import React, { useEffect, useRef } from 'react';
+import { gsap } from "gsap";
+    
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 import {
   TextRevealCard,
@@ -34,46 +40,54 @@ I always thought heroes stayed close
 Whenever troubled times arose
 I didn't know
 Ain't always how it goes
+
+Every single word you told me
+I believed without a question, always
+To save all of us, you told us both to trust
+But now I know you only saved yourself
+
+Did you think I'd never know?
+Never wise up as I grow?
   `;
 
-const words = [
-  {
-    text: "Did",
-  },
-  {
-    text: "you",
-  },
-  {
-    text: "Know",
-  },
-  {
-    text: "Tame",
-    className: "text-purple-500 dark:text-purple-500",
+// const words = [
+//   {
+//     text: "Did",
+//   },
+//   {
+//     text: "you",
+//   },
+//   {
+//     text: "Know",
+//   },
+//   {
+//     text: "Tame",
+//     className: "text-purple-500 dark:text-purple-500",
 
-  },
-  {
-    text: "Impala",
-    className: "text-purple-500 dark:text-purple-500",
-  },
-  {
-    text: "is"
-  },
-  {
-    text: "actually"
-  },
-  {
-    text: "one",
-    className: "text-purple-500 dark:text-purple-500",
+//   },
+//   {
+//     text: "Impala",
+//     className: "text-purple-500 dark:text-purple-500",
+//   },
+//   {
+//     text: "is"
+//   },
+//   {
+//     text: "actually"
+//   },
+//   {
+//     text: "one",
+//     className: "text-purple-500 dark:text-purple-500",
 
-  }, 
-  {
-    text: "guy?",
-    className: "text-purple-500 dark:text-purple-500",
+//   }, 
+//   {
+//     text: "guy?",
+//     className: "text-purple-500 dark:text-purple-500",
 
-  }, 
+//   }, 
 
 
-];
+// ];
 
 const imageUrl ='/impalabg2_hahh5f';
 const imageUrl2 ='/impalabg3_z9f4mm';
@@ -217,7 +231,34 @@ const content = [
       ),
     },
   ];
-  
+  const animations = [
+    `fade-up`,
+    `fade-down`,
+    `fade-left`,
+    `fade-right`,
+    `fade-up-right`,
+    `fade-up-left`,
+    `fade-down-right`,
+    `fade-down-left`,
+    `zoom-in`,
+    `zoom-in-up`,
+    `zoom-in-down`,
+    `zoom-in-left`,
+    `zoom-in-right`,
+    `zoom-out`,
+    `zoom-out-up`,
+    `zoom-out-down`,
+    `zoom-out-left`,
+    `zoom-out-right`,
+    `slide-up`,
+    `slide-down`,
+    `slide-right`,
+    `slide-left`,
+    `flip-left`,
+    `flip-right`,
+    `flip-up`,
+    `flip-down`,
+  ];
 export default function Home() {
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null); 
   const [isSpinning, setIsSpinning] = useState(false);
@@ -238,7 +279,7 @@ export default function Home() {
   };
 
   const handleImageClick = () => {
-    const durationInSeconds = 75; // The duration you want to play the audio for
+    const durationInSeconds = 120; // The duration you want to play the audio for
   
     if (!isSpinning) {
       const newAudio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
@@ -279,65 +320,81 @@ export default function Home() {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const topDivRef = useRef<HTMLDivElement | null>(null);
-  const [scrolledY, setScrolledY] = useState(0);
-  const textRef =useRef<HTMLParagraphElement | null>(null);
-  const [revealComplete, setRevealComplete] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  // const [scrolledY, setScrolledY] = useState(0);
+  // const textRef =useRef<HTMLParagraphElement | null>(null);
+  // const [revealComplete, setRevealComplete] = useState(false);
+  // const [scrollPosition, setScrollPosition] = useState(0);
   const [triggerAnimation, setTriggerAnimation] = useState(false);
 
 
-  useEffect(() => {
-    const handleScroll = (event: WheelEvent) => {
-      if (!containerRef.current || !topDivRef.current) return;
+  // useEffect(() => {
+  //   const handleScroll = (event: WheelEvent) => {
+  //     if (!containerRef.current || !topDivRef.current) return;
 
   
 
-      const deltaY = event.deltaY;
-      const containerHeight = containerRef.current.clientHeight;
-      const windowHeight = window.innerHeight;
+  //     const deltaY = event.deltaY;
+  //     const containerHeight = containerRef.current.clientHeight;
+  //     const windowHeight = window.innerHeight;
 
-      if (!revealComplete) {
-        // Stage 1: Reveal effect
-        const newScrollPosition = scrollPosition + deltaY;
-        const revealRatio = Math.min(newScrollPosition / windowHeight, 1);
-        const revealAmount = revealRatio * 100;
+  //     if (!revealComplete) {
+        
+  //       // Stage 1: Reveal effect
+  //       const newScrollPosition = scrollPosition + deltaY;
+  //       const revealRatio = Math.min(newScrollPosition / windowHeight, 1);
+  //       const revealAmount = revealRatio * 100;
 
-        topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
-        if (revealAmount === 100) {
-          containerRef.current.style.position = 'relative';
+  //       topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
+  //       if (revealAmount === 100) {
+  //         containerRef.current.style.position = 'relative';
 
-        } else {
-          containerRef.current.style.position = 'fixed';
-          containerRef.current.style.top = '0';
-        }
+  //       } 
+  //       if (revealAmount === 1) {
+  //         containerRef.current.style.position = 'fixed';
 
-        if (revealAmount >= 100) {
-          setRevealComplete(true);
+  //       } 
+
+  //       if (revealAmount >= 100) {
+  //         setRevealComplete(true);
       
-        }
+  //       }
 
-        setScrollPosition(newScrollPosition);
-      } else {
-        // Stage 2: Translate effect
-        const maxTranslateY = containerHeight - windowHeight;
-        let newTranslateY = scrollPosition - windowHeight + deltaY;
+  //       setScrollPosition(newScrollPosition);
+  //     } else {
+  //       // Stage 2: Translate effect
+  //       const maxTranslateY = containerHeight - windowHeight;
+  //       let newTranslateY = scrollPosition - windowHeight + deltaY;
 
-        newTranslateY = Math.max(-maxTranslateY, Math.min(0, newTranslateY));
-        setScrollPosition(newTranslateY);
-        containerRef.current.style.transform = `translate3d(0, ${newTranslateY}px, 0)`;
-      }
-    };
+  //       newTranslateY = Math.max(-maxTranslateY, Math.min(0, newTranslateY));
+  //       setScrollPosition(newTranslateY);
+  //       containerRef.current.style.transform = `translate3d(0, ${newTranslateY}px, 0)`;
+  //     }
+  //   };
 
-    window.addEventListener('wheel', handleScroll, { passive: false });
+  //   window.addEventListener('wheel', handleScroll, { passive: false });
 
-    return () => {
-      window.removeEventListener('wheel', handleScroll);
-    };
-  }, [scrollPosition, revealComplete]);
+  //   return () => {
+  //     window.removeEventListener('wheel', handleScroll);
+  //   };
+  // }, [scrollPosition, revealComplete]);
 
 
 
-  
+  // useEffect(() => {
+  //   gsap.to(topDivRef.current, {
+  //     scrollTrigger: {
+  //       trigger: containerRef.current,
+  //       start: "top center",
+  //       end: "bottom+=50%", // Adjust as necessary
+  //       scrub: true,
+  //       pin: true, // Pin the container until the animation is complete
+  //       pinSpacing: false, // Disable the extra space added by ScrollTrigger
+  //     },
+  //     clipPath: "inset(0% 0% 100% 0%)", // Left to right reveal
+  //     ease: "none",
+  //   });
+  // }, []);
+
 //   const playAudio = () => {
 //     const audio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
 //     audio.play();
@@ -345,85 +402,18 @@ export default function Home() {
    return (
   //   bg-black bg-grid-white/[0.2]
     <div className="dark  bg-black bg-grid-white/[0.2] "  >
-       <section  className="special">
-      <div className="wrapper" ref={containerRef} style={{ transform: `translate3d(0, 0, 0)` }}>
-        <div id="bottom-div1" className="bottom-div">
-            <p ref={textRef} className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
-                  Who is Tame Impala?
-                </p>
-          <div>
-            <div className="image-grid">
-              <div className="row-[12/24] col-[2/-1] image-top">
-       
-                <img alt='impala-gif-1'
-                  src="../imgs/impalagif.gif"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="h-full object-cover"
-                  style={{ color: 'transparent' }}
-                />
-              </div>
-              <div className="row-[2/24] col-[18/-2] image-bottom">
-                <img alt='impala-gif-2'
-                  src="../imgs/impalagif2.gif"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="h-full object-cover"
-                  style={{ color: 'transparent' }}
-                />
-              </div>
-              <div className="row-[3/10] col-[2/-1] image-bottom">
-                <img alt='impala-gif-1'
-                  src="../imgs/impalagif3.gif"
-                  fetchPriority="high"
-                  decoding="async"
-                  className="h-full object-cover"
-                  style={{ color: 'transparent' }}
-                />
-              </div>
-            </div>
+      <section className="h-[100vh] flex justify-center">
+        <div className="flex justify-center items-center ">
+          <h1> Welcome to the Tame Impala Experience</h1>
           </div>
-        </div>
-        <div id="top-div1" className="top-div" ref={topDivRef}>
-        <p className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
-                Who is Tame Impala?
-              </p>
-          <div className="image-grid">
-            <div className="row-[12/24] col-[2/-1] image-top">
-           
-              <img alt='img-gif1-placeholder'
-                src="../imgs/impalagif-placeholder.jpg"
-                fetchPriority="high"
-                decoding="async"
-                className="h-full object-cover"
-                style={{ color: 'transparent' }}
-              />
-            </div>
-            <div className="row-[2/24] col-[18/-2] image-bottom">
-              <img alt='img-gif2-placeholder'
-                src="../imgs/impalagif2-placeholder.jpg"
-                fetchPriority="high"
-                decoding="async"
-                className="h-full object-cover"
-                style={{ color: 'transparent' }}
-              />
-            </div>
-            <div className="row-[3/10] col-[2/-1] image-bottom">
-              <img alt='img-gif3-placeholder'
-                src="../imgs/impalagif3.png"
-                fetchPriority="high"
-                decoding="async"
-                className="h-full object-cover"
-                style={{ color: 'transparent' }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-<section>
-  <div className="section-psy video-section relative flex justify-start ">
-    <div className="absolute z-10 flex container mx-auto">
+
+      </section>
+
+   
+    <ScrollComponent></ScrollComponent>
+{/* <section>
+  <div className="section-psy video-section relative flex justify-center ">
+    <div className="absolute z-10 flex flex-col items-center container mx-auto">
     <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
   <h1  className="text-2xl sm:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
   Get Lost in the Psychedelia:</h1>
@@ -433,12 +423,12 @@ export default function Home() {
   <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
   </div>
   </div>
-    <div className="absolute inset-0 bg-black opacity-50 z-0"></div> {/* Dark overlay */}
+    <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
     <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
       <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />
     </video>
   </div>
-</section>
+</section> */}
 
 
 
@@ -466,7 +456,7 @@ Hi!      </p>
 
     </div> */}
     <section className="next-section" >
-    <p className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
+    <p   className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
 {/* <div className="art-div">
  <div className="shape-container">
@@ -488,9 +478,9 @@ Hi!      </p>
   </div>
   </section>
   <section>
-  <div>
+  <div data-aos="fade-up">
   <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
-His Journey </p>  <div className="p-10 flex items-center justify-center inline">
+His Journey </p>  <div className="p-10 flex items-center justify-center">
     
       <StickyScroll  content={content} />
     
@@ -530,7 +520,7 @@ As Kevin said himself</p>
  <TextGenerateEffect  words={wordsgen} />
  </div></section> */}
 <section className="flex justify-center" >
-  <div className="columns-2 mb-6">
+  <div className="lyrical-cont columns-2 mb-6">
 
   <div >
  <div className="hspiral-container relative flex items-center justify-center "onClick={handleImageClick} >
@@ -558,10 +548,12 @@ As Kevin said himself</p>
 </div>
 </div>
 <div className="h-full flex justify-center flex-col">
-<p   className={`text-2xl sm:text-5xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pb-3 items-center text-center justify-center ${
+<p   className={`text-2xl sm:text-5xl flex flex-col font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pb-3 items-center text-center justify-center ${
     triggerAnimation ? "what-he-said" : "what-was-said"
   }`}>
-As Kevin said himself</p>
+As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click on the vinyl</span></p>
+
+
 
 <div className="lyrics-display flex items-center justify-center pl-10 ">
 

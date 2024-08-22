@@ -117,7 +117,7 @@ body {
 .vinyl-container{
 position: absolute;
 top: 24%;
-right: 35%;
+right: 40%;
   /* overflow: hidden; */
   z-index: 1;
   transition: transform 2s ease;
@@ -155,7 +155,7 @@ right: 35%;
 
 .hspiral-container{
   border-radius: 50px;
- margin-left: 5rem;
+ /* margin-left: 5rem; */
  margin-bottom: 2rem;
 overflow: hidden;
 
@@ -180,7 +180,7 @@ transform: scale(1.1);
   animation: vanish 4s forwards;
 }
 .vinylcontainer .hypnotic-spiral {
-  animation: straight 4s forwards, spin 80s forwards;
+  animation: straight 4s forwards, spin 110s forwards;
 }
 /* .hypnotic-spiral::before {
   content: "";
@@ -361,6 +361,14 @@ transform: rotate(0);
 .final-notes{
   padding-top: 27rem;
 }
+@media (min-width: 900px) and (max-width: 1200px) {
+  .lyrical-cont{
+    display: flex;
+    flex-direction: column;
+  }
+
+}
+
 @media (min-width: 500px) and (max-width: 991.98px)  {
 .sun{
   margin-top:5%;
@@ -395,9 +403,20 @@ transform: rotate(0);
 }
 
 @media  (max-width:900px){
+  .what-was-said {
+  
+
+    transform: translateY(250px);
+  }
 
   .vinyl-container{
     top:8%;
+  }
+  
+
+  .lyrical-cont{
+    display: flex;
+    flex-direction: column;
   }
 
 
@@ -415,7 +434,8 @@ transform: rotate(0);
     padding-top: 10rem;
   }
 .vinyl-container{
-  transform: scale(0.4);
+  transform: scale(0.6);
+  right: 17%;
 }
 .packcontainer{
 
@@ -595,6 +615,9 @@ h1 {
   margin: 0;
 }
 
+.lyrical-cont{
+
+}
 
 
 @font-face {
@@ -722,30 +745,17 @@ padding:50px;
   100% {
     border-radius: 60% 35% 70% 35% / 60% 70% 30% 70%;
   }
-} */body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  height: 100%;
-  scrollbar-width: none; /* Firefox */
-
-}
-
+} */
 
 .wrapper {
-  z-index: 100;
-  top: 0;
-  width: 100%;
+
   height: 100vh; /* Ensure full viewport height */
-
+  position:relative;
+width: 100vw;
+overflow-y: hidden  ;
 }
 
-.scrollable-div {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+
 
 .bottom-div, .top-div {
   position: absolute;
@@ -753,30 +763,24 @@ padding:50px;
   left: 0;
   width: 100%;
   height: 100%;
-
-  transition: clip-path 0.5s ease, opacity 0.5s ease;
+width: 100vw;
 }
 
-.top-div {
-  clip-path: inset(0 0 100% 0); /* Start hidden */
-}
 
-.special {
-  height: 100vh;
-  position: relative;
-}
-.bottom-div {
+
+.bottom-div {  width: 100%;
   background-image: url('../../public/imgs/new-bg-intro.png');
   display: grid;
   grid-template-rows: repeat(24,1fr);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+ width: 100vw;
 }
 /* .special{
   height: 200vh;
 } */
-.top-div {
+.top-div {  width: 100%;
   background-image: url('../../public/imgs/new-bg-intro.png');
   display: grid;
   grid-template-rows: repeat(24,1fr);
@@ -784,6 +788,7 @@ padding:50px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100vw;
 }
 
 body {
@@ -804,6 +809,7 @@ body {
   grid-template-rows: repeat(24,1fr);
   grid-template-columns: repeat(24,1fr);
   max-height: 100vh;
+width: 100vw;
 }
 
 .get-lost{
@@ -838,8 +844,17 @@ body {
   transform: translateY(0);
   transition:  transform 2s ease-in-out;
 }
+.what-he-said span{
+  opacity: 0;
+  transition:  opacity 2s ease-in-out;
+}
+
+.what-was-said span{
+  opacity: 100;
+}
 
 .what-was-said {
+  
 
-  transform: translateY(200px);
+  transform: translateY(350px);
 }
