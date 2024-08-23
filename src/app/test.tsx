@@ -571,141 +571,88 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
     baseHue={120}
     className="flex items-center flex-col justify-center px-2 md:px-10 relative py-4 w-full h-full"
   >
-    <div
-      onClick={handlePlanetClick}
-      className="finalscreen absolute z-20 flex items-center justify-center w-full h-full"
-    >
-      {/* <Image
-        className="checkered-pattern absolute"
-        src="/pattern_checkerboard_1_2_0-0_0_1__008a6c_44669c_y33ijk"
-        alt="dummy image"
-        width="1000"
-        height="900"
-        style={{ width: 'auto', height: 'auto' }}
-      /> */}
+    <div>
+    <div className="parent ">
 
-      <motion.img
-        className="absolute bgspace"
-        src="../imgs/bgspace.png"
-        alt="dummy image"
-        style={{ zIndex: 1 }}
-      />
-
-      <motion.img
-        className="absolute man"
-        src="../imgs/man.png"
-        alt="dummy image"
-        width="1000"
-        height="1000"
-        animate={{
-          x: [0, 0, 0],
-          y: [5, -5, 5],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-            repeatDelay: 1,
-          },
-        }}
-      />
-
-      <motion.img
-        className="absolute sun scler"
-        src="../imgs/sun.png"
-        alt="dummy image"
-        style={{ maxWidth: '20%', height: 'auto', zIndex: 2 }}
-        animate={{
-          x: [-20, 20, -20],
-          y: [0, 0, 0],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-            repeatDelay: 1,
-          },
-        }}
-      />
-
-      <motion.img
-        className="absolute plan1 scler"
-        src="../imgs/planet1.png"
-        alt="dummy image"
-        style={{ maxWidth: '20%', height: 'auto', zIndex: 3 }}
-        animate={{
-          x: [-10, 10, -10],
-          y: [10, 10, 10],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-          },
-        }}
-      />
-
-      <motion.img
-        className="absolute plan2 scler"
-        src="../imgs/layer 3.png"
-        alt="dummy image"
-        style={{ maxWidth: '20%', height: 'auto', zIndex: 4 }}
-        animate={{
-          x: [-10, 10, -10],
-          y: [10, 10, 10],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-          },
-        }}
-      />
-
-      <motion.img
-        className="absolute plan11 scler"
-        src="../imgs/layer 8.png"
-        alt="dummy image"
-        style={{ maxWidth: '20%', height: 'auto', zIndex: 5 }}
-        animate={{
-          x: [-10, 10, -10],
-          y: [10, 10, 10],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-          },
-        }}
-      />
-
-      <motion.img
-        className="absolute plan9 scler"
-        src="../imgs/layer 9.png"
-        alt="dummy image"
-        style={{ maxWidth: '20%', height: 'auto', zIndex: 6 }}
-        animate={{
-          x: [-10, 10, -10],
-          y: [10, 10, 10],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-          },
-        }}
-      />
-
-      <motion.img
-        className="absolute plan12 scler"
-        src="../imgs/layer 11.png"
-        alt="dummy image"
-        style={{ maxWidth: '20%', height: 'auto', zIndex: 7 }}
-        animate={{
-          x: [-10, 10, -10],
-          y: [10, 10, 10],
-          transition: {
-            duration: 2,
-            ease: 'easeInOut',
-            repeat: Infinity,
-          },
-        }}
-      />
+    <div className="circle-outer absolute top-0">
+    <div className="circle"></div>
+  </div> 
+    <div className="child relative">
+    <div className="bridge-section">
+      <div className="bridge child2">
+      </div>
+      <div className="bridge child3 absolute top-0">
+      </div>
+      <div className="bridge child4 absolute top-0">
+      </div>
+      <div className="bridge child5 absolute top-0">
+      </div>
+      <div className="bridge child6 absolute top-0">
+      </div>
+      <div className="bridge child7 absolute top-0">
+      </div>
     </div>
+    <div className="bridge-section h-full absolute left-[48px]">
+      <div className="bridge child2">
+      </div>
+      <div className="bridge child3 absolute top-0">
+      </div>
+      <div className="bridge child4 absolute top-0">
+      </div>
+      <div className="bridge child5 absolute top-0">
+      </div>
+      <div className="bridge child6 absolute top-0">
+      </div>
+      <div className="bridge child7 absolute top-0">
+      </div>
+    </div>
+    <div className="bridge-section h-full absolute left-[96px]">
+      <div className="bridge child2">
+      </div>
+      <div className="bridge child3 absolute top-0">
+      </div>
+      <div className="bridge child4 absolute top-0">
+      </div>
+      <div className="bridge child5 absolute top-0">
+      </div>
+      <div className="bridge child6 absolute top-0">
+      </div>
+      <div className="bridge child7 absolute top-0">
+      </div>
+    </div>
+    <div className="bridge-section h-full absolute left-[144px]">
+      <div className="bridge child2">
+      </div>
+      <div className="bridge child3 absolute top-0">
+      </div>
+      <div className="bridge child4 absolute top-0">
+      </div>
+      <div className="bridge child5 absolute top-0">
+      </div>
+      <div className="bridge child6 absolute top-0">
+      </div>
+      <div className="bridge child7 absolute top-0">
+      </div>
+    </div>
+    <div className="bridge-section h-full absolute left-[164px]">
+      <div className="bridge child2">
+      </div>
+      <div className="bridge child3 absolute top-0">
+      </div>
+      <div className="bridge child4 absolute top-0">
+      </div>
+      <div className="bridge child5 absolute top-0">
+      </div>
+      <div className="bridge child6 absolute top-0">
+      </div>
+      <div className="bridge child7 absolute top-0">
+      </div>
+    </div>
+    </div>
+    
+  </div>
+    </div>
+
   </Vortex>
 </div>
 
@@ -747,3 +694,145 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
   </div>
   );
 }
+
+
+
+
+
+
+
+{/* <div
+onClick={handlePlanetClick}
+className="finalscreen absolute z-20 flex items-center justify-center w-full h-full"
+> */}
+{/* <Image
+  className="checkered-pattern absolute"
+  src="/pattern_checkerboard_1_2_0-0_0_1__008a6c_44669c_y33ijk"
+  alt="dummy image"
+  width="1000"
+  height="900"
+  style={{ width: 'auto', height: 'auto' }}
+/> */}
+
+{/* <motion.img
+  className="absolute bgspace"
+  src="../imgs/bgspace.png"
+  alt="dummy image"
+  style={{ zIndex: 1 }}
+/>
+
+<motion.img
+  className="absolute man"
+  src="../imgs/man.png"
+  alt="dummy image"
+  width="1000"
+  height="1000"
+  animate={{
+    x: [0, 0, 0],
+    y: [5, -5, 5],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+      repeatDelay: 1,
+    },
+  }}
+/>
+
+<motion.img
+  className="absolute sun scler"
+  src="../imgs/sun.png"
+  alt="dummy image"
+  style={{ maxWidth: '20%', height: 'auto', zIndex: 2 }}
+  animate={{
+    x: [-20, 20, -20],
+    y: [0, 0, 0],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+      repeatDelay: 1,
+    },
+  }}
+/>
+
+<motion.img
+  className="absolute plan1 scler"
+  src="../imgs/planet1.png"
+  alt="dummy image"
+  style={{ maxWidth: '20%', height: 'auto', zIndex: 3 }}
+  animate={{
+    x: [-10, 10, -10],
+    y: [10, 10, 10],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+    },
+  }}
+/>
+
+<motion.img
+  className="absolute plan2 scler"
+  src="../imgs/layer 3.png"
+  alt="dummy image"
+  style={{ maxWidth: '20%', height: 'auto', zIndex: 4 }}
+  animate={{
+    x: [-10, 10, -10],
+    y: [10, 10, 10],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+    },
+  }}
+/>
+
+<motion.img
+  className="absolute plan11 scler"
+  src="../imgs/layer 8.png"
+  alt="dummy image"
+  style={{ maxWidth: '20%', height: 'auto', zIndex: 5 }}
+  animate={{
+    x: [-10, 10, -10],
+    y: [10, 10, 10],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+    },
+  }}
+/>
+
+<motion.img
+  className="absolute plan9 scler"
+  src="../imgs/layer 9.png"
+  alt="dummy image"
+  style={{ maxWidth: '20%', height: 'auto', zIndex: 6 }}
+  animate={{
+    x: [-10, 10, -10],
+    y: [10, 10, 10],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+    },
+  }}
+/>
+
+<motion.img
+  className="absolute plan12 scler"
+  src="../imgs/layer 11.png"
+  alt="dummy image"
+  style={{ maxWidth: '20%', height: 'auto', zIndex: 7 }}
+  animate={{
+    x: [-10, 10, -10],
+    y: [10, 10, 10],
+    transition: {
+      duration: 2,
+      ease: 'easeInOut',
+      repeat: Infinity,
+    },
+  }}
+/>
+</div> */}
