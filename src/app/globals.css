@@ -864,7 +864,7 @@ width: 100vw;
 
 
 .child{
-  transform: perspective(10px) rotateX(2deg) translateZ(5px);
+  transform: perspective(16px) rotateX(1deg) translateZ(5px);
 }
 .parent {
   display: flex;
@@ -878,8 +878,8 @@ width: 100vw;
 }
 .child3{
   transform:perspective(24px) rotateX(-1deg) translateZ(-4px) translateX(-7px);
-  background: rgb(63,94,251);
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+background: rgb(255,101,189);
+background: radial-gradient(circle, rgba(255,101,189,1) 0%, rgba(125,255,0,1) 49%);
 
   height: 100%;
   -radius: 5px;
@@ -888,8 +888,8 @@ width: 100vw;
 }
 .child4{
   transform:perspective(24px) rotateX(-1deg) translateZ(-4px) translateX(-7px);
-  background: rgb(62, 210, 255);
-
+background: rgb(255,101,189);
+background: radial-gradient(circle, rgba(255,101,189,1) 0%, rgba(125,255,0,1) 49%);
 height: 100%;
 
 border-radius: 5px;
@@ -899,8 +899,8 @@ left: 16px;
 .child6{
 
   transform:perspective(24px) rotateX(-1deg) translateZ(-4px) translateX(-7px);
-  background: rgb(0,247,240);
-  background: radial-gradient(circle, rgba(0,247,240,1) 0%, rgba(0,255,89,1) 100%);
+background: rgb(255,101,189);
+background: radial-gradient(circle, rgba(255,101,189,1) 0%, rgba(125,255,0,1) 49%);
 
 height: 100%;
 
@@ -912,8 +912,8 @@ left: 32px;
 .child7{
 
   transform:perspective(24px) rotateX(-1deg) translateZ(-4px) translateX(-7px);
-  background: rgb(0,0,0);
-background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(255,0,211,1) 100%);
+background: rgb(255,101,189);
+background: radial-gradient(circle, rgba(255,101,189,1) 0%, rgba(125,255,0,1) 49%);
 
 
 height: 100%;
@@ -925,10 +925,10 @@ left: 40px;
 }
 
 .child5{
-
+  
   transform:perspective(24px) rotateX(-1deg) translateZ(-4px) translateX(-7px);
-  background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(159,0,0,1) 100%);
+background: rgb(255,101,189);
+background: radial-gradient(circle, rgba(255,101,189,1) 0%, rgba(125,255,0,1) 49%);
 height: 100%;
 
 border-radius: 5px;
@@ -937,8 +937,9 @@ left: 24px;
 
 }
 
-.child2{background: rgb(255,106,234);
-  background: radial-gradient(circle, rgba(255,106,234,1) 0%, rgba(255,0,69,1) 100%);
+.child2{
+background: rgb(255,101,189);
+background: radial-gradient(circle, rgba(255,101,189,1) 0%, rgba(125,255,0,1) 49%);
  
   height: 100%;
   -radius: 5px;
@@ -956,13 +957,10 @@ left: 24px;
 .parent{
   perspective: 1000px;
 }
-.child{
-   animation: transform 5s infinite ease-in-out alternate-reverse;
-}
 
 
 .bridge{
-  width: 10px;
+  width: 5px;
 }
 
 
@@ -971,8 +969,9 @@ left: 24px;
   height: 300px;
 }
 .circle {
+  transform: perspective(10px) translateZ(-12px) translateY(3rem);
   z-index: 100;
-    background: linear-gradient(#0097d1 0%, #00a2b3 10%, #00536c 50%, #004040 100%);
+  background: linear-gradient(#1a3401 0%, #151515 10%, #020e00 50%, #145302 100%);
     border-radius: 50%;
     position: relative;
     display: flex;
@@ -986,7 +985,7 @@ left: 24px;
     position: absolute;
     width: 250px;
     height: 250px;
-    background: linear-gradient(#67d1e9 10%, #006a7b 50%, #00404e 100%);
+    background: linear-gradient(#5b5b5b 10%, #000000 50%, #000000 100%);
     border-radius: 50%;
     filter: blur(15px);
     transform: rotateZ(385deg);
@@ -1001,4 +1000,22 @@ left: 24px;
     border-radius: 50%;
     bottom: -50%;
     filter: blur(15px);
+}
+
+
+.fortune:before{
+  background: linear-gradient(#004368 10%, #07A8FF  50%, #004368 100%);
+  content: " ";
+  position: absolute;
+  top: 115px;
+  left: 100px;
+  width: 100px;
+  height: 92px;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+
+}
+
+.bridge-section > *:hover{
+  background: radial-gradient(circle, rgb(240, 78, 49) 0%, rgb(132, 0, 255) 49%);
+
 }

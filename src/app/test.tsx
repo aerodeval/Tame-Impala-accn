@@ -31,6 +31,7 @@ import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
 import { Vortex } from "./ui/vortex";
 import ScrollComponent from "./ScrollComponent";
+import MagicBall from "./MagicBall";
 
 const isClicked= false;
   const wordsgen = `
@@ -562,22 +563,32 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
 </div></div>
 
 </section>
-
-<div className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
+<MagicBall></MagicBall>
+{/* <div className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
   <Vortex
     backgroundColor="black"
     rangeY={800}
     particleCount={500}
     baseHue={120}
-    className="flex items-center flex-col justify-center px-2 md:px-10 relative py-4 w-full h-full"
+    className="flex items-center flex-col justify-start px-2 md:px-10 relative py-4 w-full h-full"
   >
     <div>
     <div className="parent ">
 
     <div className="circle-outer absolute top-0">
-    <div className="circle"></div>
+    <div className="circle">
+      <div className="eight-ball w-[130px] h-[130px] z-10 bg-slate-200 rounded-full flex  justify-center items-center"
+      >
+        <span className="fortune text-6xl text-black">8</span>
+
+      </div>
+    </div>
   </div> 
-    <div className="child relative">
+    <div className="child relative flex justify-center">
+      <div className="z-10 position-absolute h-3">
+        Click To Know your fate
+
+      </div>
     <div className="bridge-section">
       <div className="bridge child2">
       </div>
@@ -634,27 +645,14 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
       <div className="bridge child7 absolute top-0">
       </div>
     </div>
-    <div className="bridge-section h-full absolute left-[164px]">
-      <div className="bridge child2">
-      </div>
-      <div className="bridge child3 absolute top-0">
-      </div>
-      <div className="bridge child4 absolute top-0">
-      </div>
-      <div className="bridge child5 absolute top-0">
-      </div>
-      <div className="bridge child6 absolute top-0">
-      </div>
-      <div className="bridge child7 absolute top-0">
-      </div>
-    </div>
+   
     </div>
     
   </div>
     </div>
 
   </Vortex>
-</div>
+</div> */}
 
 
 
