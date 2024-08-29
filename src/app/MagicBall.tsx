@@ -10,20 +10,23 @@ export default function MagicBall() {
 
   gsap.registerPlugin(ScrollTrigger);
   useGSAP(() => {
-    gsap.fromTo(ballRef.current,  { y: 0,zIndex:10,perspective:100 }, {
+    gsap.to(ballRef.current,  {
+      duration: 4,
         markers: {startColor: "white", endColor: "white", fontSize: "18px", fontWeight: "bold", indent: 20},
       scrollTrigger: {
         trigger: ballRef.current,
+        
+        toggleActions: "play reverse play reverse", // Actions to perform on scroll
         snap:{
         ease: 'power1.inOut',
         }
   
       
       },
-     y:100,// Left to right reveal
+     y:250,// Left to right reveal
       zIndex:100,
       perspective:150,
-
+      scrub:true,
       ease: "none",
     });
   }, {scope: magicRef })

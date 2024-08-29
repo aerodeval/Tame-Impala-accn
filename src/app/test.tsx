@@ -6,12 +6,19 @@ import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
 import {Spotify} from "react-spotify-embed"
 import React, { useEffect, useRef } from 'react';
-import { gsap } from "gsap";
-    
+
+import { Draggable } from 'gsap/Draggable';
+
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
+
+
+
+
 
 import {
   TextRevealCard,
@@ -30,7 +37,7 @@ import { audio } from "@cloudinary/url-gen/qualifiers/source";
 import { WavyBackground } from "./ui/wavy-background";
 import { PinContainer } from "./ui/3d-pin";
 import { Vortex } from "./ui/vortex";
-import ScrollComponent from "./ScrollComponent";
+// import ScrollComponent from "./ScrollComponent";
 import MagicBall from "./MagicBall";
 
 const isClicked= false;
@@ -260,7 +267,53 @@ const content = [
     `flip-up`,
     `flip-down`,
   ];
+
+  
+
+
+  gsap.registerPlugin(ScrollTrigger);
+
+
+  
+
+gsap.registerPlugin(Draggable);
+gsap.registerPlugin(ScrollTrigger);
+
+
 export default function Home() {
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const topDivRef = useRef<HTMLDivElement | null>(null);
+  const VidDivRef = useRef<HTMLDivElement | null>(null);
+  const textRef = useRef(null);
+
+  useGSAP(() => {
+    // Animation for the clip-path
+    gsap.to(topDivRef.current, {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+        pin: true,
+        refreshPriority: 1,
+      },
+      clipPath: "inset(0% 0% 100% 0%)", // Left to right reveal
+      ease: "none",
+    });
+
+    // Animation for the text movement
+    gsap.to(textRef.current, {
+      y: 500, // Adjust how far you want the text to move
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "+=200",
+        end: "bottom top", // Ensure the end point is correctly aligned
+        scrub: 0.5, // Adjust scrub for smoother movement
+      },
+      ease: "none",
+    });
+  }, { scope: containerRef });
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null); 
   const [isSpinning, setIsSpinning] = useState(false);
   const [interPlan,setPlan]=useState(false)
@@ -319,8 +372,7 @@ export default function Home() {
     
   };
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const topDivRef = useRef<HTMLDivElement | null>(null);
+
   // const [scrolledY, setScrolledY] = useState(0);
   // const textRef =useRef<HTMLParagraphElement | null>(null);
   // const [revealComplete, setRevealComplete] = useState(false);
@@ -410,28 +462,91 @@ export default function Home() {
 
       </section>
 
-   
-    <ScrollComponent></ScrollComponent>
-{/* <section>
-  <div className="section-psy video-section relative flex justify-center ">
-    <div className="absolute z-10 flex flex-col items-center container mx-auto">
-    <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
-  <h1  className="text-2xl sm:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
-  Get Lost in the Psychedelia:</h1>
-  <span className=" get-lost-para z-10">Tame Impalas Top Hits (personally approved)</span>
-  </div>
-  <div className="flex flex-col w-2/3   ">
-  <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
-  </div>
-  </div>
+      <div className="wrapper" ref={containerRef} >
+        <div id="top-div1" className="top-div" ref={topDivRef}>
+        <p  className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
+                Who is Tame Impala?
+              </p>
+          <div className="image-grid">
+            <div className="row-[12/24] col-[2/-1] image-top">
+           
+              <img alt='img-gif1-placeholder'
+                src="../imgs/impalagif-placeholder.jpg"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full object-cover"
+                style={{ color: 'transparent' }}
+              />
+            </div>
+            <div className="row-[2/24] col-[18/-2] image-bottom">
+              <img alt='img-gif2-placeholder'
+                src="../imgs/impalagif2-placeholder.jpg"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full object-cover"
+                style={{ color: 'transparent' }}
+              />
+            </div>
+            <div className="row-[3/10] col-[2/-1] image-bottom">
+              <img alt='img-gif3-placeholder'
+                src="../imgs/impalagif3.png"
+                fetchPriority="high"
+                decoding="async"
+                className="h-full object-cover"
+                style={{ color: 'transparent' }}
+              />
+            </div>
+          </div>
+        </div>
+        <div id="bottom-div1" className="bottom-div">
+            <p ref={textRef} className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+                  Who is Tame Impala?
+                </p>
+          <div>
+            <div className="image-grid">
+              <div className="row-[12/24] col-[2/-1] image-top">
+       
+                <img alt='impala-gif-1'
+                  src="../imgs/impalagif.gif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[2/24] col-[18/-2] image-bottom">
+                <img alt='impala-gif-2'
+                  src="../imgs/impalagif2.gif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[3/10] col-[2/-1] image-bottom">
+                <img alt='impala-gif-1'
+                  src="../imgs/impalagif3.gif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+    <section>
+  <div ref={VidDivRef} className="section-psy video-section relative flex justify-center ">
+ 
     <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
     <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
-      <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />
+      <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
     </video>
   </div>
-</section> */}
-
-
+</section>
 
       
       {/* Radial gradient for the container to give a faded look */}
@@ -548,6 +663,7 @@ As Kevin said himself</p>
 </div>
 </div>
 </div>
+
 <div className="h-full flex justify-center flex-col">
 <p   className={`text-2xl sm:text-5xl flex flex-col font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pb-3 items-center text-center justify-center ${
     triggerAnimation ? "what-he-said" : "what-was-said"
@@ -562,6 +678,24 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
 </div>
 </div></div>
 
+</section>
+<section>
+  <div className="section-psy video-section relative flex justify-center ">
+    <div className="absolute z-10 flex flex-col items-center container mx-auto">
+    <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
+  <h1  className="text-2xl sm:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
+  Get Lost in the Psychedelia:</h1>
+  <span className=" get-lost-para z-10">Tame Impalas Top Hits (personally approved)</span>
+  </div>
+  <div className="flex flex-col w-2/3   ">
+  <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
+  </div>
+  </div>
+    <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
+    <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
+      <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1723465188/mplabg-2_l9cwxk.mp4" type="video/mp4" />
+    </video>
+  </div>
 </section>
 <MagicBall></MagicBall>
 {/* <div className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
