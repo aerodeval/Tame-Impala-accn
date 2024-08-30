@@ -933,4 +933,24 @@ body {
 .ball-container {
   width: 500px;
   height: 500px;
+
+}
+
+
+
+.name-translation{
+
+  font-weight:300;
+
+}
+
+
+
+.name-translation p{
+  color: white;
+
+}
+.name-bg{
+  background: rgb(205,85,4);
+  background: linear-gradient(32deg, rgba(205,85,4,1) 30%, rgba(255,124,101,1) 69%, rgba(101,255,121,1) 96%);
 }

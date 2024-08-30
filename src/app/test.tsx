@@ -6,9 +6,8 @@ import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
 import {Spotify} from "react-spotify-embed"
 import React, { useEffect, useRef } from 'react';
-
+import Marquee from "react-fast-marquee";
 import { Draggable } from 'gsap/Draggable';
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -540,11 +539,25 @@ export default function Home() {
 
     <section>
   <div ref={VidDivRef} className="section-psy video-section relative flex justify-center ">
- 
+  <div className="h-[83px] w-full
+ absolute top-0 z-40 name-bg flex justify-center">
+  <Marquee className="name-translation">
+<p className=" pr-[5rem]">Tame Impala</p>
+<p className=" pr-[5rem]" >टेम इम्पाला</p>
+<p className=" pr-[5rem]">Таме Импала</p>
+<p className=" pr-[5rem]">길들이-임팔라</p>
+<p className=" pr-[5rem]">ترويض-إمبالا</p>
+<p className=" pr-[5rem]">テーム・インパラ</p>
+  </Marquee>
+    </div>
     <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
     <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
       <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
     </video>
+    <div className="h-[63px] w-full
+     bg-black absolute bottom-0 z-40 name-bg">
+
+    </div>
   </div>
 </section>
 
@@ -681,6 +694,7 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
 </section>
 <section>
   <div className="section-psy video-section relative flex justify-center ">
+  
     <div className="absolute z-10 flex flex-col items-center container mx-auto">
     <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
   <h1  className="text-2xl sm:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
