@@ -8,30 +8,7 @@ export default function MagicBall() {
   const magicRef = useRef<HTMLDivElement | null>(null);
   const ballRef = useRef<HTMLDivElement | null>(null);
 
-  gsap.registerPlugin(ScrollTrigger);
-  useGSAP(() => {
-    gsap.to(ballRef.current,  {
-      duration: 4,
-        markers: {startColor: "white", endColor: "white", fontSize: "18px", fontWeight: "bold", indent: 20},
-      scrollTrigger: {
-        trigger: ballRef.current,
-        
-        toggleActions: "play reverse play reverse", // Actions to perform on scroll
-        snap:{
-        ease: 'power1.inOut',
-        }
-  
-      
-      },
-     y:250,// Left to right reveal
-      zIndex:100,
-      perspective:150,
-      scrub:true,
-      ease: "none",
-    });
-  }, {scope: magicRef })
-
-
+ 
 
   
 

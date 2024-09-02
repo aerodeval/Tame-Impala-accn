@@ -284,7 +284,11 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const topDivRef = useRef<HTMLDivElement | null>(null);
   const VidDivRef = useRef<HTMLDivElement | null>(null);
-  const textRef = useRef(null);
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const textQuesRef = useRef<HTMLDivElement | null>(null);
+  const textContRef = useRef<HTMLDivElement | null>(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const ParagraphRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -304,15 +308,50 @@ export default function Home() {
     // Animation for the text movement
     gsap.to(textRef.current, {
       y: 500, // Adjust how far you want the text to move
+      opacity:0,
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "+=200",
-        end: "bottom top", // Ensure the end point is correctly aligned
+        start: "+=50",
+        end: "+=600", // Ensure the end point is correctly aligned
         scrub: 0.5, // Adjust scrub for smoother movement
       },
       ease: "none",
     });
-  }, { scope: containerRef });
+
+
+    gsap.to(VidDivRef.current,{
+opacity:100,
+      scrollTrigger: {
+        trigger: VidDivRef.current,
+        start: 'top top', // Start when the top of the container reaches the top of the viewport
+        end: `+=800`, // End 800 pixels after the start point
+        scrub: 0.2, // Smoothly animate as the user scrolls
+        pin:true
+
+
+      } ,duration:10  ,   ease: "none",
+
+    });
+  
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: textRef.current,
+        start: '+=200',  // Start animation when the top of the element reaches 90% of the viewport
+        end: '+=1000',    // End animation when the top of the element reaches 60% of the viewport
+        toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
+        scrub: 0.3,  // Smooth scrubbing
+ // Debugging markers, remove when done
+      },
+    });
+
+    timeline
+    .from(textQuesRef.current, { x: 500, opacity: 0, duration: 1 }) // Slide in from the right
+    .from(divRef.current, { x: 500, opacity: 0, duration: 1 }, '-=0.5')
+    .from(ParagraphRef.current, { x: 500, opacity: 0, duration: 1 }, '-=0.5');
+
+
+    
+  }, [containerRef] );
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null); 
   const [isSpinning, setIsSpinning] = useState(false);
   const [interPlan,setPlan]=useState(false)
@@ -498,7 +537,7 @@ export default function Home() {
           </div>
         </div>
         <div id="bottom-div1" className="bottom-div">
-            <p ref={textRef} className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+            <p ref={textRef} id="textop" className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
                   Who is Tame Impala?
                 </p>
           <div>
@@ -537,11 +576,28 @@ export default function Home() {
       
       </div>
 
-    <section>
-  <div ref={VidDivRef} className="section-psy video-section relative flex justify-center ">
-  <div className="h-[83px] w-full
+    <section >
+  <div ref={VidDivRef} className="section-psy   video-section relative flex justify-center ">
+    <div ref={textContRef} className="new-open flex flex-col  absolute z-20">
+    <p ref={textQuesRef} className="  urban-head top-text text-[#7fff00]">
+             Tame Impala?
+    
+                </p>
+                <div className="flex gap-2">
+<span >/teɪm ɪmˈpɑːlə/ 
+
+</span> <span>noun</span></div>
+                <div ref={divRef}  className="h-[4px] bg-violet-800 w-full">
+        
+                </div>
+                <div ref={ParagraphRef} className=" urban-body   text-[#7fff00]">
+                A one-man musical journey led by Kevin Parker that feels like a cosmic trip through the 70s, but with a modern twist. Imagine cruising through a kaleidoscope of dreamy guitars, hypnotic synths, and rhythms that make you want to both dance and ponder life’s deeper meanings. It’s the perfect soundtrack for daydreamers, night thinkers, and anyone who appreciates a good existential groove. Essentially, Tame Impala is what you listen to when you want to get lost in your own head and have a great time doing it.
+                </div>
+
+    </div>
+  {/* <div className="h-[83px] w-full
  absolute top-0 z-40 name-bg flex justify-center">
-  <Marquee className="name-translation">
+  <Marquee gradient gradientColor="#1d1c1d" gradientWidth={200} className="name-translation">
 <p className=" pr-[5rem]">Tame Impala</p>
 <p className=" pr-[5rem]" >टेम इम्पाला</p>
 <p className=" pr-[5rem]">Таме Импала</p>
@@ -549,15 +605,22 @@ export default function Home() {
 <p className=" pr-[5rem]">ترويض-إمبالا</p>
 <p className=" pr-[5rem]">テーム・インパラ</p>
   </Marquee>
-    </div>
-    <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
-    <video className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
+    </div> */}
+    <div  className="absolute  inset-0 bg-black opacity-50 z-0"></div> 
+    <video  className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
       <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
     </video>
-    <div className="h-[63px] w-full
-     bg-black absolute bottom-0 z-40 name-bg">
-
-    </div>
+    {/* <div className="h-[83px] w-full
+     bg-black absolute bottom-0 z-40 name-bg flex justify-center">
+        <Marquee direction="right" gradient gradientColor="#1d1c1d" gradientWidth={200} className="name-translation">
+<p className="pr-[5rem]">טיים אימפלה</p> 
+<p className="pr-[5rem]">ترويض-إمبالا</p>
+<p className="pr-[5rem]">Тейм Імпала</p> 
+<p className="pr-[5rem]">Teme Impala</p> 
+<p className="pr-[5rem]">ตาเม อิมพาลา</p> 
+<p className="pr-[5rem]">ಟೇಮ್ ಇಂಪಾಲಾ</p>
+</Marquee>
+    </div> */}
   </div>
 </section>
 
