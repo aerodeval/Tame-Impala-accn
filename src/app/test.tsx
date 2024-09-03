@@ -289,6 +289,8 @@ export default function Home() {
   const textContRef = useRef<HTMLDivElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
   const ParagraphRef = useRef<HTMLDivElement | null>(null);
+    const IPARef = useRef<HTMLDivElement | null>(null);
+    const imgGridRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -306,17 +308,23 @@ export default function Home() {
     });
 
     // Animation for the text movement
-    gsap.to(textRef.current, {
-      y: 500, // Adjust how far you want the text to move
-      opacity:0,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "+=50",
-        end: "+=600", // Ensure the end point is correctly aligned
-        scrub: 0.5, // Adjust scrub for smoother movement
-      },
-      ease: "none",
-    });
+gsap.timeline({
+  scrollTrigger: {
+    trigger: containerRef.current,
+    start: "+=50",
+    end: "+=900",
+    scrub: 0.5,
+  }
+})
+  .to(textRef.current, {
+    y: 500, // Move text
+    ease: "none",
+  })
+  .to(textRef.current, {
+    opacity: 0, // Start fading out
+    ease: "none",
+    duration: 4.5, // Adjust duration for fade-out as needed
+  }, "+=0.1"); // Adjust the delay before fading out
 
 
     gsap.to(VidDivRef.current,{
@@ -324,7 +332,7 @@ opacity:100,
       scrollTrigger: {
         trigger: VidDivRef.current,
         start: 'top top', // Start when the top of the container reaches the top of the viewport
-        end: `+=800`, // End 800 pixels after the start point
+        end: `+=3500`, // End 800 pixels after the start point
         scrub: 0.2, // Smoothly animate as the user scrolls
         pin:true
 
@@ -336,7 +344,7 @@ opacity:100,
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: textRef.current,
-        start: '+=200',  // Start animation when the top of the element reaches 90% of the viewport
+        start: '+=800',  // Start animation when the top of the element reaches 90% of the viewport
         end: '+=1000',    // End animation when the top of the element reaches 60% of the viewport
         toggleActions: 'play none none reverse', // Play when scrolling down, reverse when scrolling up
         scrub: 0.3,  // Smooth scrubbing
@@ -345,8 +353,12 @@ opacity:100,
     });
 
     timeline
-    .from(textQuesRef.current, { x: 500, opacity: 0, duration: 1 }) // Slide in from the right
-    .from(divRef.current, { x: 500, opacity: 0, duration: 1 }, '-=0.5')
+    .from(imgGridRef.current, { opacity:100,duration:1}) // Slide in from the right
+
+    .from(textQuesRef.current, { x: 500, opacity: 0, duration: 1 },'-=0.5') // Slide in from the right
+    .from(IPARef.current, { x: 500, opacity: 0, duration: 1 }) 
+    .from(divRef.current, {    width: '0px', 
+      height: '0px',  opacity: 0, duration: 1 }, '-=0.5')
     .from(ParagraphRef.current, { x: 500, opacity: 0, duration: 1 }, '-=0.5');
 
 
@@ -578,19 +590,79 @@ opacity:100,
 
     <section >
   <div ref={VidDivRef} className="section-psy   video-section relative flex justify-center ">
+  <div ref={imgGridRef} className="image-grid absolute z-10 opacity-0">
+              <div className="row-[12/24] col-[2/-1] image-top">
+       
+                <img alt='impala-gif-1'
+                  src="../imgs/tp-1.jpg"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[3/11] col-[6/-2] image-bottom">
+                <img alt='impala-gif-2'
+                  src="../imgs/images.jpg"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[2/11] col-[2/-1] image-bottom">
+                <img alt='impala-gif-1'
+                  src="../imgs/tp-3.jpg"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[19/24] col-[20/-1] image-bottom">
+                <img alt='impala-gif-1'
+                  src="../imgs/tp-8.png"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>
+              <div className="row-[8/18] col-[20/-1] image-bottom">
+                <img alt='impala-gif-1'
+                  src="../imgs/tp-6.jpg"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>  
+              <div className="row-[15/24] col-[16/-1] image-bottom">
+                <img alt='impala-gif-1'
+                  src="../imgs/tp-7.jfif"
+                  fetchPriority="high"
+                  decoding="async"
+                  className="h-full object-cover"
+                  style={{ color: 'transparent' }}
+                />
+              </div>  
+            </div>
+
+
+
     <div ref={textContRef} className="new-open flex flex-col  absolute z-20">
     <p ref={textQuesRef} className="  urban-head top-text text-[#7fff00]">
              Tame Impala?
     
                 </p>
-                <div className="flex gap-2">
-<span >/teɪm ɪmˈpɑːlə/ 
+                <div ref={IPARef} className="flex gap-2">
+<span className="ipa-text">/teɪm ɪmˈpɑːlə/ 
 
-</span> <span>noun</span></div>
-                <div ref={divRef}  className="h-[4px] bg-violet-800 w-full">
+</span> <span className="ipa-italy">noun</span></div>
+                <div ref={divRef}  className="h-[7px] bg-violet-800 w-full">
         
                 </div>
-                <div ref={ParagraphRef} className=" urban-body   text-[#7fff00]">
+                <div ref={ParagraphRef} className=" urban-body  pt-3 text-[#7fff00]">
                 A one-man musical journey led by Kevin Parker that feels like a cosmic trip through the 70s, but with a modern twist. Imagine cruising through a kaleidoscope of dreamy guitars, hypnotic synths, and rhythms that make you want to both dance and ponder life’s deeper meanings. It’s the perfect soundtrack for daydreamers, night thinkers, and anyone who appreciates a good existential groove. Essentially, Tame Impala is what you listen to when you want to get lost in your own head and have a great time doing it.
                 </div>
 

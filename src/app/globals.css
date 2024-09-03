@@ -6,21 +6,41 @@ html,
 body {
   overflow-x: hidden;
 }
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -1000px 0; /* Adjust this value based on your image width */
+  }
+  
+}
 
+@keyframes moveBackgroundR {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: +1000px 0; /* Adjust this value based on your image width */
+  }
+}
 .test {
   margin-top: 11rem;
   transform: skewY(15deg);
   background-image: url("../../public/imgs/impalabg.jfif");
+  animation: moveBackgroundR 50s linear infinite;
 }
 .test-zig {
   margin-top: 11rem;
   transform: skewY(338deg);
   background-image: url("../../public/imgs/impalabg5.jfif");
+  animation: moveBackground 50s linear infinite;
 }
 .test-zag {
   margin-top: 11rem;
   transform: skewY(15deg);
   background-image: url("../../public/imgs/Tame Impala concert.jfif");
+  animation: moveBackgroundR 50s linear infinite;
 }
 
 .test1 {
@@ -482,7 +502,7 @@ transform: scale(1.1);
 .bg-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
   opacity: 0.4;
 }
 
@@ -979,9 +999,20 @@ background: linear-gradient(90deg, rgba(158,153,157,1) 0%, rgba(249,243,243,1) 5
 
 
 .new-open{
-  min-width:600px;
-max-width:900px;
-top:25%;
+padding:50px
+
+}
+
+
+.ipa-text{
+
+}
+
+.ipa-italy{
+  font-style: italic;
+  font-weight: 700;
+
+  font-family: 'Lora';
 }
 
 
