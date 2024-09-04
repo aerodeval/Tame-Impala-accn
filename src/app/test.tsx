@@ -238,36 +238,7 @@ const content = [
       ),
     },
   ];
-  const animations = [
-    `fade-up`,
-    `fade-down`,
-    `fade-left`,
-    `fade-right`,
-    `fade-up-right`,
-    `fade-up-left`,
-    `fade-down-right`,
-    `fade-down-left`,
-    `zoom-in`,
-    `zoom-in-up`,
-    `zoom-in-down`,
-    `zoom-in-left`,
-    `zoom-in-right`,
-    `zoom-out`,
-    `zoom-out-up`,
-    `zoom-out-down`,
-    `zoom-out-left`,
-    `zoom-out-right`,
-    `slide-up`,
-    `slide-down`,
-    `slide-right`,
-    `slide-left`,
-    `flip-left`,
-    `flip-right`,
-    `flip-up`,
-    `flip-down`,
-  ];
-
-  
+ 
 
 
   gsap.registerPlugin(ScrollTrigger);
@@ -289,8 +260,8 @@ export default function Home() {
   const textContRef = useRef<HTMLDivElement | null>(null);
   const divRef = useRef<HTMLDivElement | null>(null);
   const ParagraphRef = useRef<HTMLDivElement | null>(null);
-    const IPARef = useRef<HTMLDivElement | null>(null);
-    const imgGridRef = useRef<HTMLDivElement | null>(null);
+  const IPARef = useRef<HTMLDivElement | null>(null);
+  const imgGridRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -323,7 +294,7 @@ gsap.timeline({
   .to(textRef.current, {
     opacity: 0, // Start fading out
     ease: "none",
-    duration: 4.5, // Adjust duration for fade-out as needed
+    duration: 0.5, // Adjust duration for fade-out as needed
   }, "+=0.1"); // Adjust the delay before fading out
 
 
@@ -332,7 +303,7 @@ opacity:100,
       scrollTrigger: {
         trigger: VidDivRef.current,
         start: 'top top', // Start when the top of the container reaches the top of the viewport
-        end: `+=3500`, // End 800 pixels after the start point
+        end: `+=3000`, // End 800 pixels after the start point
         scrub: 0.2, // Smoothly animate as the user scrolls
         pin:true
 
@@ -846,7 +817,9 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
     </video>
   </div>
 </section>
+<section className="relative">
 <MagicBall></MagicBall>
+</section>
 {/* <div className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
   <Vortex
     backgroundColor="black"
