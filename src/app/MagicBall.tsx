@@ -4,13 +4,54 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Vortex } from "./ui/vortex";
 import { useGSAP } from '@gsap/react';
+import 'css-doodle';
 import { Draggable } from 'gsap/Draggable';
+
+
+import dynamic from 'next/dynamic';
+
+
+// Dynamically import CssDoodleComponent without SSR
+const CssDoodleComponent = dynamic(() => import('../app/doodle'), {
+  ssr: false,
+});
+
+
 export default function MagicBall() {
   const ballRef = useRef<HTMLDivElement | null>(null);
   const screenRef = useRef<HTMLDivElement | null>(null);
   const magicRef = useRef<HTMLDivElement | null>(null);
   const eightRef = useRef<HTMLDivElement | null>(null);
+  const doodleRules = `
+    --color: #8f11f5,#ff56f6,#ff9d76,#840606;
+    @grid: 30x1 / 100vw 100vh / #270f34;
 
+    :container {
+      perspective: 30vmin;
+      --deg: @p(-180deg, 180deg);
+    }
+
+    @place: center;
+    @size: 18vmin; 
+    
+    box-shadow: @m2(0 0 50px @p(--color));
+    will-change: transform, opacity;
+    animation: scale-up 12s linear infinite;
+    animation-delay: calc(-12s / @I * @i);
+
+    @keyframes scale-up {
+      0%, 95.01%, 100% {
+        transform: translateZ(0) rotate(0);
+        opacity: 0;
+      }
+      10% { 
+        opacity: 1; 
+      }
+      95% {
+        transform: translateZ(35vmin) rotateZ(var(--deg));
+      }
+    }
+  `;
 
   useEffect(() => {
     // Save the initial position
@@ -28,7 +69,7 @@ export default function MagicBall() {
     });
 
     // Animate ballRef element to y: 300 as the user scrolls
-    timeline.to(ballRef.current, { y: 300, duration: 10 });
+    timeline.to(ballRef.current, { y: 200, duration: 10 });
 
     // Fade in screenRef element as the user scrolls
     timeline.to(screenRef.current, { opacity: 1 });
@@ -47,21 +88,21 @@ export default function MagicBall() {
       border: "solid 1px rebeccapurple"
     });
 
-    timeline.to(screenRef.current, {
-      opacity: 1, 
-      duration: 1,
-      onStart: () => {
-        // Set initial text opacity to 0
-        gsap.set(screenRef.current!.querySelector('.text-content'), { opacity: 0 });
-      }
-    });
+    // timeline.to(screenRef.current, {
+    //   opacity: 1, 
+    //   duration: 1,
+    //   onStart: () => {
+    //     // Set initial text opacity to 0
+    //     gsap.set(screenRef.current!.querySelector('.text-content'), { opacity: 0 });
+    //   }
+    // });
 
-    // Animate text inside screenRef to fade in
-    timeline.to(screenRef.current!.querySelector('.text-content'), {
-      opacity: 1,
-      duration: 1,
-      ease: 'power2.out'
-    });
+    // // Animate text inside screenRef to fade in
+    // timeline.to(screenRef.current!.querySelector('.text-content'), {
+    //   opacity: 1,
+    //   duration: 1,
+    //   ease: 'power2.out'
+    // });
 
 
     // Make the element draggable
@@ -100,16 +141,15 @@ export default function MagicBall() {
   
 
   return (
-<div  ref={magicRef} className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
-  <Vortex
-    backgroundColor="black"
-    rangeY={800}
-    particleCount={500}
-    baseHue={120}
-    className="flex items-center flex-col justify-start px-2 md:px-10 relative py-4 w-full h-full"
-  >
-    <div>
-    <div className="parent ">
+<div className='relative flex justify-center' >
+
+
+<CssDoodleComponent rule={doodleRules} />
+
+
+
+    <div  className='absolute'>
+    <div ref={magicRef} className="parent  ">
 
     <div ref={ballRef} className="circle-outer absolute top-0 z-20">
     <div className="circle">
@@ -118,7 +158,7 @@ export default function MagicBall() {
 
 <span  className="number-ball text-6xl text-black">8</span>
         <div ref={screenRef}  className="fortune  flex justify-center text-6xl text-black">
-        <div className="text-content">Thanks for staying till the end</div>
+        <div className="text-content">Good Bye</div>
         </div>
 
       </div>
@@ -126,8 +166,7 @@ export default function MagicBall() {
   </div> 
     <div className="child relative flex justify-center">
     <div className="bridge-section">
-      <div className="bridge child2">
-      </div>
+ 
       <div className="bridge child3 absolute top-0">
       </div>
       <div className="bridge child4 absolute top-0">
@@ -187,7 +226,6 @@ export default function MagicBall() {
   </div>
     </div>
 
-  </Vortex>
 </div>
   );
 }

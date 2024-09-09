@@ -11,6 +11,9 @@ import { Draggable } from 'gsap/Draggable';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import Spline from '@splinetool/react-spline/next';
+
+
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -262,6 +265,30 @@ export default function Home() {
   const ParagraphRef = useRef<HTMLDivElement | null>(null);
   const IPARef = useRef<HTMLDivElement | null>(null);
   const imgGridRef = useRef<HTMLDivElement | null>(null);
+  const textChangeRef = useRef(null);
+  const textList = ["Tame Impala", "टेम इम्पाला", "Таме Импала", "길들이-임팔라","ترويض-إمبالا","テーム・インパラ","ตาเม อิมพาลา"];
+
+
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+
+
+  useEffect(() => {
+    const changeText = () => {
+      gsap.to(textChangeRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        onComplete: () => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
+          gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
+        },
+      });
+    };
+
+    const interval = setInterval(changeText, 1000); // Every 2 seconds
+    return () => clearInterval(interval); // Cleanup
+  }, [textList.length]);
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -296,6 +323,8 @@ gsap.timeline({
     ease: "none",
     duration: 0.5, // Adjust duration for fade-out as needed
   }, "+=0.1"); // Adjust the delay before fading out
+
+
 
 
     gsap.to(VidDivRef.current,{
@@ -475,10 +504,15 @@ opacity:100,
 //   };
    return (
   //   bg-black bg-grid-white/[0.2]
-    <div className="dark  bg-black bg-grid-white/[0.2] "  >
+    <div className="dark  bg-black bg-grid-white/[0.2]   overflow-hidden"  >
+
+      <div className="grain">  </div>
       <section className="h-[100vh] flex justify-center">
         <div className="flex justify-center items-center ">
-          <h1> Welcome to the Tame Impala Experience</h1>
+        <Spline
+        scene="https://prod.spline.design/xxuLYntV0MgDM9DJ/scene.splinecode" 
+      />
+          <h1 className="text-6xl font-bold"> Welcome to the  <span className="text-yellow-400">{textList[currentIndex]}</span>  Experience</h1>
           </div>
 
       </section>
@@ -946,6 +980,7 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
     </div>
     </section> */}
   </div>
+
   );
 }
 
