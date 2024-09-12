@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
 import {Spotify} from "react-spotify-embed"
@@ -10,40 +9,18 @@ import Marquee from "react-fast-marquee";
 import { Draggable } from 'gsap/Draggable';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-import Spline from '@splinetool/react-spline/next';
-
-
+import { DirectionAwareHover } from "./ui/direction-aware-hover";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { useState } from "react";
+import { WavyBackground } from "./ui/wavy-background";
+import Quote from "./Quote";
 import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Draggable);
 
 
-
-
-
-import {
-  TextRevealCard,
-  TextRevealCardDescription,
-  TextRevealCardTitle,
-} from "./ui/text-reveal-card";
-import { Boxes } from "./ui/background-boxes";
-import { cn } from "./utils/cn";
-import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
-import { TracingBeam } from "./ui/tracing-beam";
-import { DirectionAwareHover } from "./ui/direction-aware-hover";
-import { TextGenerateEffect } from "./ui/text-generate-effect";
-import cloudinaryLoader from "../../my-loader";
-import { useState } from "react";
-import { audio } from "@cloudinary/url-gen/qualifiers/source";
-import { WavyBackground } from "./ui/wavy-background";
-import { PinContainer } from "./ui/3d-pin";
-import { Vortex } from "./ui/vortex";
-// import ScrollComponent from "./ScrollComponent";
-import MagicBall from "./MagicBall";
-
-const isClicked= false;
-  const wordsgen = `
+const wordsgen = `
 Ever since I was a small boy
 No one else compared to you, no way
 I always thought heroes stayed close
@@ -59,45 +36,6 @@ But now I know you only saved yourself
 Did you think I'd never know?
 Never wise up as I grow?
   `;
-
-// const words = [
-//   {
-//     text: "Did",
-//   },
-//   {
-//     text: "you",
-//   },
-//   {
-//     text: "Know",
-//   },
-//   {
-//     text: "Tame",
-//     className: "text-purple-500 dark:text-purple-500",
-
-//   },
-//   {
-//     text: "Impala",
-//     className: "text-purple-500 dark:text-purple-500",
-//   },
-//   {
-//     text: "is"
-//   },
-//   {
-//     text: "actually"
-//   },
-//   {
-//     text: "one",
-//     className: "text-purple-500 dark:text-purple-500",
-
-//   }, 
-//   {
-//     text: "guy?",
-//     className: "text-purple-500 dark:text-purple-500",
-
-//   }, 
-
-
-// ];
 
 const imageUrl ='/impalabg2_hahh5f';
 const imageUrl2 ='/impalabg3_z9f4mm';
@@ -241,16 +179,7 @@ const content = [
       ),
     },
   ];
- 
 
-
-  gsap.registerPlugin(ScrollTrigger);
-
-
-  
-
-gsap.registerPlugin(Draggable);
-gsap.registerPlugin(ScrollTrigger);
 
 
 export default function Home() {
@@ -369,18 +298,6 @@ opacity:100,
   const [interPlan,setPlan]=useState(false)
   const delayInMillis = 4000; // 2 seconds
 
-  const handlePlanetClick=()=>{
-
-  const planet=  document.querySelector('.finalscreen');
-  const planet2=  document.querySelector('.scler');
-
-  planet!.classList.add('planetanimation');
-
-  planet!.addEventListener('animationend',()=>{
-
-    planet2!.classList.add('planetTransform')
-  })
-  };
 
   const handleImageClick = () => {
     const durationInSeconds = 120; // The duration you want to play the audio for
@@ -507,12 +424,40 @@ opacity:100,
     <div className="dark  bg-black bg-grid-white/[0.2]   overflow-hidden"  >
 
       <div className="grain">  </div>
-      <section className="h-[100vh] flex justify-center">
-        <div className="flex justify-center items-center ">
-        <Spline
+      <section className="h-[100vh] flex relative">
+
+        <div className="flex items-end  ">
+         
+        <img alt='element'
+                src="../imgs/element.png"
+                fetchPriority="high"
+                decoding="async"
+                className="absolute h-full"
+               
+              />
+
+                 
+        <img alt='element'
+                src="../imgs/element-2.png"
+                fetchPriority="high"
+                decoding="async"
+                className="absolute bottom-4  right-4"
+               
+              />
+                 
+        <img alt='element'
+                src="../imgs/element-3.png"
+                fetchPriority="high"
+                decoding="async"
+                className="absolute  top-2 right-4"
+               
+              />
+        
+        {/* <Spline
         scene="https://prod.spline.design/xxuLYntV0MgDM9DJ/scene.splinecode" 
-      />
-          <h1 className="text-6xl font-bold"> Welcome to the  <span className="text-yellow-400">{textList[currentIndex]}</span>  Experience</h1>
+      /> */}
+      <Quote ></Quote>
+          <h1 className="text-6xl font-bold z-10 ml-5 pb-16"> Welcome to the  <span className="tame-impala-name">{textList[currentIndex]}</span> <br/> Experience</h1>
           </div>
 
       </section>
@@ -833,7 +778,7 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
 
 </section>
 <section>
-  <div className="section-psy video-section relative flex justify-center ">
+  <div className="section-psy-2 video-section relative flex justify-center ">
   
     <div className="absolute z-10 flex flex-col items-center container mx-auto">
     <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
@@ -851,134 +796,10 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
     </video>
   </div>
 </section>
-<section className="relative">
-<MagicBall></MagicBall>
-</section>
-{/* <div className="w-full vortex mx-auto rounded-md relative h-screen overflow-hidden">
-  <Vortex
-    backgroundColor="black"
-    rangeY={800}
-    particleCount={500}
-    baseHue={120}
-    className="flex items-center flex-col justify-start px-2 md:px-10 relative py-4 w-full h-full"
-  >
-    <div>
-    <div className="parent ">
+<div className="flex justify-center h-8 bg-black loading-text">
+  <span className="text-white">Created by aerodeval. Connect with me on sydney223as@gmail.com</span>
 
-    <div className="circle-outer absolute top-0">
-    <div className="circle">
-      <div className="eight-ball w-[130px] h-[130px] z-10 bg-slate-200 rounded-full flex  justify-center items-center"
-      >
-        <span className="fortune text-6xl text-black">8</span>
-
-      </div>
-    </div>
-  </div> 
-    <div className="child relative flex justify-center">
-      <div className="z-10 position-absolute h-3">
-        Click To Know your fate
-
-      </div>
-    <div className="bridge-section">
-      <div className="bridge child2">
-      </div>
-      <div className="bridge child3 absolute top-0">
-      </div>
-      <div className="bridge child4 absolute top-0">
-      </div>
-      <div className="bridge child5 absolute top-0">
-      </div>
-      <div className="bridge child6 absolute top-0">
-      </div>
-      <div className="bridge child7 absolute top-0">
-      </div>
-    </div>
-    <div className="bridge-section h-full absolute left-[48px]">
-      <div className="bridge child2">
-      </div>
-      <div className="bridge child3 absolute top-0">
-      </div>
-      <div className="bridge child4 absolute top-0">
-      </div>
-      <div className="bridge child5 absolute top-0">
-      </div>
-      <div className="bridge child6 absolute top-0">
-      </div>
-      <div className="bridge child7 absolute top-0">
-      </div>
-    </div>
-    <div className="bridge-section h-full absolute left-[96px]">
-      <div className="bridge child2">
-      </div>
-      <div className="bridge child3 absolute top-0">
-      </div>
-      <div className="bridge child4 absolute top-0">
-      </div>
-      <div className="bridge child5 absolute top-0">
-      </div>
-      <div className="bridge child6 absolute top-0">
-      </div>
-      <div className="bridge child7 absolute top-0">
-      </div>
-    </div>
-    <div className="bridge-section h-full absolute left-[144px]">
-      <div className="bridge child2">
-      </div>
-      <div className="bridge child3 absolute top-0">
-      </div>
-      <div className="bridge child4 absolute top-0">
-      </div>
-      <div className="bridge child5 absolute top-0">
-      </div>
-      <div className="bridge child6 absolute top-0">
-      </div>
-      <div className="bridge child7 absolute top-0">
-      </div>
-    </div>
-   
-    </div>
-    
-  </div>
-    </div>
-
-  </Vortex>
-</div> */}
-
-
-
-
-    
-
-    {/* <div>
-    <div className="h-96 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-      <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
- 
-      <Boxes />
-      <h1 className={cn("md:text-4xl text-xl text-white relative z-20")}>
-        Tailwind is Awesome
-      </h1>
-      <p className="text-center mt-2 text-neutral-300 relative z-20">
-        Framer motion is the best animation library ngl
-      </p>
-    </div>
-    </div> */}
-{/* <section>
-<div className="w-full vortex mx-auto rounded-md  h-screen overflow-hidden">
-      <Vortex
-        backgroundColor="black"
-        rangeY={800}
-        particleCount={500}
-        baseHue={120}
-        className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"
-      >
-        <h2 className="text-white text-2xl md:text-6xl font-bold text-center">
-      Thanks for tuning in till the end, just like the last echoes of a Tame Impala song.
-
-        </h2>
-       
-      </Vortex>
-    </div>
-    </section> */}
+</div>
   </div>
 
   );
@@ -986,142 +807,3 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
 
 
 
-
-
-
-
-{/* <div
-onClick={handlePlanetClick}
-className="finalscreen absolute z-20 flex items-center justify-center w-full h-full"
-> */}
-{/* <Image
-  className="checkered-pattern absolute"
-  src="/pattern_checkerboard_1_2_0-0_0_1__008a6c_44669c_y33ijk"
-  alt="dummy image"
-  width="1000"
-  height="900"
-  style={{ width: 'auto', height: 'auto' }}
-/> */}
-
-{/* <motion.img
-  className="absolute bgspace"
-  src="../imgs/bgspace.png"
-  alt="dummy image"
-  style={{ zIndex: 1 }}
-/>
-
-<motion.img
-  className="absolute man"
-  src="../imgs/man.png"
-  alt="dummy image"
-  width="1000"
-  height="1000"
-  animate={{
-    x: [0, 0, 0],
-    y: [5, -5, 5],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-      repeatDelay: 1,
-    },
-  }}
-/>
-
-<motion.img
-  className="absolute sun scler"
-  src="../imgs/sun.png"
-  alt="dummy image"
-  style={{ maxWidth: '20%', height: 'auto', zIndex: 2 }}
-  animate={{
-    x: [-20, 20, -20],
-    y: [0, 0, 0],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-      repeatDelay: 1,
-    },
-  }}
-/>
-
-<motion.img
-  className="absolute plan1 scler"
-  src="../imgs/planet1.png"
-  alt="dummy image"
-  style={{ maxWidth: '20%', height: 'auto', zIndex: 3 }}
-  animate={{
-    x: [-10, 10, -10],
-    y: [10, 10, 10],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-    },
-  }}
-/>
-
-<motion.img
-  className="absolute plan2 scler"
-  src="../imgs/layer 3.png"
-  alt="dummy image"
-  style={{ maxWidth: '20%', height: 'auto', zIndex: 4 }}
-  animate={{
-    x: [-10, 10, -10],
-    y: [10, 10, 10],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-    },
-  }}
-/>
-
-<motion.img
-  className="absolute plan11 scler"
-  src="../imgs/layer 8.png"
-  alt="dummy image"
-  style={{ maxWidth: '20%', height: 'auto', zIndex: 5 }}
-  animate={{
-    x: [-10, 10, -10],
-    y: [10, 10, 10],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-    },
-  }}
-/>
-
-<motion.img
-  className="absolute plan9 scler"
-  src="../imgs/layer 9.png"
-  alt="dummy image"
-  style={{ maxWidth: '20%', height: 'auto', zIndex: 6 }}
-  animate={{
-    x: [-10, 10, -10],
-    y: [10, 10, 10],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-    },
-  }}
-/>
-
-<motion.img
-  className="absolute plan12 scler"
-  src="../imgs/layer 11.png"
-  alt="dummy image"
-  style={{ maxWidth: '20%', height: 'auto', zIndex: 7 }}
-  animate={{
-    x: [-10, 10, -10],
-    y: [10, 10, 10],
-    transition: {
-      duration: 2,
-      ease: 'easeInOut',
-      repeat: Infinity,
-    },
-  }}
-/>
-</div> */}

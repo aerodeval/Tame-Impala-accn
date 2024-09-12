@@ -1,6 +1,9 @@
+import React from 'react';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import LoadingWrapper from './LoadingWrapper'; // New client-side component for handling loading state
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <body className={inter.className +" w-full overflow-hidden"} >{children}</body>
+      <body className={inter.className + " w-full overflow-hidden"}>
+        <LoadingWrapper>
+          {children}
+        </LoadingWrapper>
+      </body>
     </html>
   );
 }

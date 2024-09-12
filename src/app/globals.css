@@ -1064,6 +1064,29 @@ padding:50px
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Supply';
+  src: url('../../public/fonts/Supply-Regular.woff2') format('woff2'),
+      url('../../public/fonts/Supply-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.loading-text{
+
+  font-family: 'Supply';
+}
+
+
+
+.section-psy-2{
+  display: flex;
+
+  align-items: center;
+  font-size: 2em;
+  position: relative;
+}
 
 
 .text-content{
@@ -1100,3 +1123,42 @@ filter:drop-shadow(2px 4px 6px black)
 
 
 
+.tame-impala-name{
+  background: #F5FF2F;
+background: linear-gradient(to bottom, #F5FF2F 0%, #FF3B00 83%, #FF95E7 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+
+}
+
+
+
+
+
+.loadingContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  z-index: 9999;
+  color: #fff;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-left-color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: load 1s linear infinite;
+}
+
+@keyframes load {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

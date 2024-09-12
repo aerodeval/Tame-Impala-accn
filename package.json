@@ -15,6 +15,7 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "clsx": "^2.1.1",
+    "coolshapes-react": "^1.0.1",
     "css-doodle": "^0.40.0",
     "framer-motion": "^11.1.7",
     "gsap": "^3.12.5",
