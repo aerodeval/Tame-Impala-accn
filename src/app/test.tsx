@@ -16,6 +16,7 @@ import { WavyBackground } from "./ui/wavy-background";
 import Quote from "./Quote";
 import { useGSAP } from '@gsap/react';
 
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
 
@@ -298,7 +299,11 @@ opacity:100,
   const [interPlan,setPlan]=useState(false)
   const delayInMillis = 4000; // 2 seconds
 
+  const [value, setValue] = useState('10:00');
 
+  const onChange = (timeValue: React.SetStateAction<string>) => {
+     setValue(timeValue);
+  }
   const handleImageClick = () => {
     const durationInSeconds = 120; // The duration you want to play the audio for
   
@@ -777,14 +782,14 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
 </div></div>
 
 </section>
-<section>
+<section className="h-[100%]">
   <div className="section-psy-2 video-section relative flex justify-center ">
   
     <div className="absolute z-10 flex flex-col items-center container mx-auto">
     <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
-  <h1  className="text-2xl sm:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
+  <h1  className="text-2xl sm:text-3xl  md:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
   Get Lost in the Psychedelia:</h1>
-  <span className=" get-lost-para z-10">Tame Impalas Top Hits (personally approved)</span>
+  <span className=" get-lost-para z-10 text-[10px] sm:text-1xl  md:text-3xl">Tame Impalas Top Hits (personally approved)</span>
   </div>
   <div className="flex flex-col w-2/3   ">
   <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
@@ -796,10 +801,32 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
     </video>
   </div>
 </section>
+<section>
+  <div className="relative flex justify-center">
+  <img alt='element'
+                src="../imgs/headshot.png"
+                fetchPriority="high"
+                decoding="async"
+                className="absolute bottom-0 xl:max-w-screen-md w-[250px] max-h-[620px] md:w-[600px] sm:w-[300px] xs"
+               
+              />
+                <img alt='element'
+                src="../imgs/TameImpalaBg.jpg"
+                fetchPriority="high"
+                decoding="async"
+           
+               
+              />
+         </div>
+</section>
+
+<section>
 <div className="flex justify-center h-8 bg-black loading-text">
+
   <span className="text-white">Created by aerodeval. Connect with me on sydney223as@gmail.com</span>
 
 </div>
+</section>
   </div>
 
   );

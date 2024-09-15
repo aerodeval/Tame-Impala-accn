@@ -367,6 +367,10 @@ transform: scale(1.1);
   .vinyl-container {
     top: 8%;
   }
+  .spotify-blob{
+    width:100%;
+    height:300px;
+  }
 
   .lyrical-cont {
     display: flex;
@@ -375,6 +379,11 @@ transform: scale(1.1);
 }
 
 @media (max-width: 500px) {
+
+  .spotify-blob{
+    width:100%;
+    height:100px;
+  }
   /* .vortex{
     margin-top: 10rem;
   } */
@@ -1082,7 +1091,7 @@ padding:50px
 
 .section-psy-2{
   display: flex;
-
+height:100%;
   align-items: center;
   font-size: 2em;
   position: relative;
