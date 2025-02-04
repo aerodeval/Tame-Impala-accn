@@ -5,7 +5,6 @@ import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
 import {Spotify} from "react-spotify-embed"
 import React, { useEffect, useRef } from 'react';
-import Marquee from "react-fast-marquee";
 import { Draggable } from 'gsap/Draggable';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,89 +14,36 @@ import { useState } from "react";
 import { WavyBackground } from "./ui/wavy-background";
 import Quote from "./Quote";
 import { useGSAP } from '@gsap/react';
+import SongWithLyrics from "./MusicLyrics";
+import {imgContent,tabs,textList} from "./data/data"
 
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Draggable);
-
-
-const wordsgen = `
-Ever since I was a small boy
-No one else compared to you, no way
-I always thought heroes stayed close
-Whenever troubled times arose
-I didn't know
-Ain't always how it goes
-
-Every single word you told me
-I believed without a question, always
-To save all of us, you told us both to trust
-But now I know you only saved yourself
-
-Did you think I'd never know?
-Never wise up as I grow?
-  `;
-
 const imageUrl ='/impalabg2_hahh5f';
 const imageUrl2 ='/impalabg3_z9f4mm';
 const imageUrl3 ='/tour-image';
-const content = [
-  {
-    title: "Formation",
-    description:
-    "Tame Impala was formed by Kevin Parker in 2007 in Perth, Western Australia. Initially, it started as a solo project with Parker recording all the music himself. Parker drew inspiration from various psychedelic rock bands of the 1960s and 1970s, such as The Beatles, Pink Floyd, and Cream, as well as contemporary acts like MGMT and Flaming Lips.",
-    content: (
-      <div>
-             <Image
-        src="/kevin_parker_qafycq"
-        alt="dummy image"
-        width="1000"
-        height="1000"
-      />
-      </div>
-    ),
-  },
-  {
-    title: "Breakout Album ",
-    description:
-"Tame Impala's early work received praise from critics for its innovative approach to psychedelic rock, with many lauding Parker's production skills and songwriting prowess. The band's debut album, Innerspeaker, was released in 2010 to widespread acclaim. It showcased Parker's multi-instrumental talents and his knack for crafting intricate psychedelic rock compositions.",
-    content: (
-      <div className="h-full w-full  flex items-center justify-center text-white">
-        <Image  
-        src="/tour-image"
-        alt="dummy image"
-        width="1000"
-        height="1000"
-      />
-      </div>
-    ),
-  },
-  {
-    title: "Expanding the Band",
-    description:
-      "While Tame Impala initially started as Parker's solo project, he later expanded it into a full band to perform live shows. However, Parker remained the primary songwriter and producer for the group. Following the success of 'Innerspeaker,' Tame Impala released further critically acclaimed albums, including 'Lonerism in 2012 and 'Currents' in 2015, which further solidified their status as one of the leading psychedelic rock acts of the 21st century.",
-    content: (
-      <Image   
-      src="/stickyscroll"
-      alt="dummy image"
-      width="1000"
-      height="1000"
-    />
-    ),
-  },
-  {
-    title: "Evolution of Sound",
-    description:
-      "Tame Impala received several Grammy nominations over the years, including nods for Best Alternative Music Album and Best Rock Song, reflecting their impact on contemporary music. Throughout their career, Tame Impala has continually evolved their sound, incorporating elements of electronic music, funk, and pop into their psychedelic rock framework while maintaining Parker's signature sonic aesthetic.",
-    content: (
-      <Image          src="/Tame_Impala_1"
-        alt="dummy image"
-        width="1000"
-        height="1000"
-      />
-    ),
-  },
-];
+
+
+
+
+export default function Home() {
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const topDivRef = useRef<HTMLDivElement | null>(null);
+  const VidDivRef = useRef<HTMLDivElement | null>(null);
+  const textRef = useRef<HTMLDivElement | null>(null);
+  const textQuesRef = useRef<HTMLDivElement | null>(null);
+  const textContRef = useRef<HTMLDivElement | null>(null);
+  const divRef = useRef<HTMLDivElement | null>(null);
+  const ParagraphRef = useRef<HTMLDivElement | null>(null);
+  const IPARef = useRef<HTMLDivElement | null>(null);
+  const imgGridRef = useRef<HTMLDivElement | null>(null);
+  const textChangeRef = useRef(null);
+  const intervalRef = useRef<number>(); // Store interval ID
+
+
+
   const tabs = [
     {
       title: "Currents",
@@ -180,45 +126,30 @@ const content = [
       ),
     },
   ];
-
-
-
-export default function Home() {
-
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const topDivRef = useRef<HTMLDivElement | null>(null);
-  const VidDivRef = useRef<HTMLDivElement | null>(null);
-  const textRef = useRef<HTMLDivElement | null>(null);
-  const textQuesRef = useRef<HTMLDivElement | null>(null);
-  const textContRef = useRef<HTMLDivElement | null>(null);
-  const divRef = useRef<HTMLDivElement | null>(null);
-  const ParagraphRef = useRef<HTMLDivElement | null>(null);
-  const IPARef = useRef<HTMLDivElement | null>(null);
-  const imgGridRef = useRef<HTMLDivElement | null>(null);
-  const textChangeRef = useRef(null);
-  const textList = ["Tame Impala", "टेम इम्पाला", "Таме Импала", "길들이-임팔라","ترويض-إمبالا","テーム・インパラ","ตาเม อิมพาลา"];
-
-
-
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const changeText = () => {
+    gsap.to(textChangeRef.current, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
+        gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
+      },
+    });
+  };
+
+  // useEffect(() => {
+  //   const interval = setInterval(changeText, 1000); // Every 2 seconds
+  //   return () => clearInterval(interval); // Cleanup
+  // }, [textList.length]);
 
 
   useEffect(() => {
-    const changeText = () => {
-      gsap.to(textChangeRef.current, {
-        opacity: 0,
-        duration: 0.5,
-        onComplete: () => {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
-          gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
-        },
-      });
-    };
+    intervalRef.current = window.setInterval(changeText, 2000); // Every 2 seconds
 
-    const interval = setInterval(changeText, 1000); // Every 2 seconds
-    return () => clearInterval(interval); // Cleanup
-  }, [textList.length]);
+    return () => clearInterval(intervalRef.current); // Cleanup on unmount
+  }, [textList.length]); 
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -294,138 +225,8 @@ opacity:100,
 
     
   }, [containerRef] );
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null); 
-  const [isSpinning, setIsSpinning] = useState(false);
-  const [interPlan,setPlan]=useState(false)
-  const delayInMillis = 4000; // 2 seconds
 
-  const [value, setValue] = useState('10:00');
-
-  const onChange = (timeValue: React.SetStateAction<string>) => {
-     setValue(timeValue);
-  }
-  const handleImageClick = () => {
-    const durationInSeconds = 120; // The duration you want to play the audio for
-  
-    if (!isSpinning) {
-      const newAudio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
-      setAudio(newAudio);
-  
-      setTimeout(() => {
-        newAudio.play();
-      }, delayInMillis);
-  
-      // Stop the audio after the specified duration
-      setTimeout(() => {
-        newAudio.pause();
-        newAudio.currentTime = 0; // Reset audio to the beginning if needed
-        setIsSpinning(false);
-      }, durationInSeconds * 1000);
-  
-      setIsSpinning(true);
-      setTriggerAnimation(true);
-    } else {
-      if (audio) {
-        setIsSpinning(false);
-        audio.pause(); // Pause audio playback
-      }
-    }
-  };
-  
-  const handleDivClick = () => {
-    const element = document.querySelector('.vinyl-container');
-    element!.classList.add('vinylcontainer');
-    element!.addEventListener('animationend', () => {
-     const elementToAdd = document.querySelector('.hypnotic-spiral');
-     const elementToAdd2 = document.querySelector('.wavey');
-     elementToAdd2?.classList.add('bg-opac');
- 
-    });
-    
-  };
-
-
-  // const [scrolledY, setScrolledY] = useState(0);
-  // const textRef =useRef<HTMLParagraphElement | null>(null);
-  // const [revealComplete, setRevealComplete] = useState(false);
-  // const [scrollPosition, setScrollPosition] = useState(0);
-  const [triggerAnimation, setTriggerAnimation] = useState(false);
-
-
-  // useEffect(() => {
-  //   const handleScroll = (event: WheelEvent) => {
-  //     if (!containerRef.current || !topDivRef.current) return;
-
-  
-
-  //     const deltaY = event.deltaY;
-  //     const containerHeight = containerRef.current.clientHeight;
-  //     const windowHeight = window.innerHeight;
-
-  //     if (!revealComplete) {
-        
-  //       // Stage 1: Reveal effect
-  //       const newScrollPosition = scrollPosition + deltaY;
-  //       const revealRatio = Math.min(newScrollPosition / windowHeight, 1);
-  //       const revealAmount = revealRatio * 100;
-
-  //       topDivRef.current.style.clipPath = `inset(0 0 ${revealAmount}% 0)`;
-  //       if (revealAmount === 100) {
-  //         containerRef.current.style.position = 'relative';
-
-  //       } 
-  //       if (revealAmount === 1) {
-  //         containerRef.current.style.position = 'fixed';
-
-  //       } 
-
-  //       if (revealAmount >= 100) {
-  //         setRevealComplete(true);
-      
-  //       }
-
-  //       setScrollPosition(newScrollPosition);
-  //     } else {
-  //       // Stage 2: Translate effect
-  //       const maxTranslateY = containerHeight - windowHeight;
-  //       let newTranslateY = scrollPosition - windowHeight + deltaY;
-
-  //       newTranslateY = Math.max(-maxTranslateY, Math.min(0, newTranslateY));
-  //       setScrollPosition(newTranslateY);
-  //       containerRef.current.style.transform = `translate3d(0, ${newTranslateY}px, 0)`;
-  //     }
-  //   };
-
-  //   window.addEventListener('wheel', handleScroll, { passive: false });
-
-  //   return () => {
-  //     window.removeEventListener('wheel', handleScroll);
-  //   };
-  // }, [scrollPosition, revealComplete]);
-
-
-
-  // useEffect(() => {
-  //   gsap.to(topDivRef.current, {
-  //     scrollTrigger: {
-  //       trigger: containerRef.current,
-  //       start: "top center",
-  //       end: "bottom+=50%", // Adjust as necessary
-  //       scrub: true,
-  //       pin: true, // Pin the container until the animation is complete
-  //       pinSpacing: false, // Disable the extra space added by ScrollTrigger
-  //     },
-  //     clipPath: "inset(0% 0% 100% 0%)", // Left to right reveal
-  //     ease: "none",
-  //   });
-  // }, []);
-
-//   const playAudio = () => {
-//     const audio = new Audio('https://res.cloudinary.com/dm3ienizb/video/upload/v1712037415/pforgive.mp3');
-//     audio.play();
-//   };
    return (
-  //   bg-black bg-grid-white/[0.2]
     <div className="dark  bg-black bg-grid-white/[0.2]   overflow-hidden"  >
 
       <div className="grain">  </div>
@@ -606,7 +407,7 @@ opacity:100,
 
 
     <div ref={textContRef} className="new-open flex flex-col  absolute z-20">
-    <p ref={textQuesRef} className="  urban-head top-text text-[#7fff00]">
+    <p ref={textQuesRef} className="   urban-head top-text text-[#7fff00]">
              Tame Impala?
     
                 </p>
@@ -618,80 +419,23 @@ opacity:100,
         
                 </div>
                 <div ref={ParagraphRef} className=" urban-body  pt-3 text-[#7fff00]">
+                  <p>
                 A one-man musical journey led by Kevin Parker that feels like a cosmic trip through the 70s, but with a modern twist. Imagine cruising through a kaleidoscope of dreamy guitars, hypnotic synths, and rhythms that make you want to both dance and ponder life’s deeper meanings. It’s the perfect soundtrack for daydreamers, night thinkers, and anyone who appreciates a good existential groove. Essentially, Tame Impala is what you listen to when you want to get lost in your own head and have a great time doing it.
-                </div>
+                </p></div>
 
     </div>
-  {/* <div className="h-[83px] w-full
- absolute top-0 z-40 name-bg flex justify-center">
-  <Marquee gradient gradientColor="#1d1c1d" gradientWidth={200} className="name-translation">
-<p className=" pr-[5rem]">Tame Impala</p>
-<p className=" pr-[5rem]" >टेम इम्पाला</p>
-<p className=" pr-[5rem]">Таме Импала</p>
-<p className=" pr-[5rem]">길들이-임팔라</p>
-<p className=" pr-[5rem]">ترويض-إمبالا</p>
-<p className=" pr-[5rem]">テーム・インパラ</p>
-  </Marquee>
-    </div> */}
     <div  className="absolute  inset-0 bg-black opacity-50 z-0"></div> 
     <video  className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
       <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
     </video>
-    {/* <div className="h-[83px] w-full
-     bg-black absolute bottom-0 z-40 name-bg flex justify-center">
-        <Marquee direction="right" gradient gradientColor="#1d1c1d" gradientWidth={200} className="name-translation">
-<p className="pr-[5rem]">טיים אימפלה</p> 
-<p className="pr-[5rem]">ترويض-إمبالا</p>
-<p className="pr-[5rem]">Тейм Імпала</p> 
-<p className="pr-[5rem]">Teme Impala</p> 
-<p className="pr-[5rem]">ตาเม อิมพาลา</p> 
-<p className="pr-[5rem]">ಟೇಮ್ ಇಂಪಾಲಾ</p>
-</Marquee>
-    </div> */}
   </div>
 </section>
 
       
-      {/* Radial gradient for the container to give a faded look */}
-      {/* <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <p className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8">
-Hi!      </p>
-<TypewriterEffectSmooth className="text-4xl sm:text-7xl flex font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8" words={words} />
 
-<Image
-
-
-        src="/tameimpala_mvyskc"
-        alt="dummy image"
-        width="1000"
-        height="1000"
-        className="object-cover opacity-40 object-left-top h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
-      /> */}
- 
-    {/* <div  className="h-[100vh] w-full relative">
-
-    <p className="text-4xl sm:text-7xl testes font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
- Some of his work     </p>
-
-    </div> */}
     <section className="next-section" >
     <p   className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
-{/* <div className="art-div">
- <div className="shape-container">
-	<div className="shape">
-  <div className="shape-inner">
-  <div className="shape-inner-2">
-  <div className="shape-inner-3">
-    
-    </div>
-    </div>
-    </div>
-  
-  </div>
-  </div>
-  </div> */}
-
     <div style={{marginTop:0}} className=" h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-40">
     <Tabs tabs={tabs} />
   </div>
@@ -701,7 +445,7 @@ Hi!      </p>
   <p className="text-4xl sm:text-7xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
 His Journey </p>  <div className="p-10 flex items-center justify-center">
     
-      <StickyScroll  content={content} />
+      <StickyScroll  content={imgContent} />
     
     </div>
   </div></section>
@@ -738,50 +482,9 @@ As Kevin said himself</p>
 <div className="lyrics-display flex items-center justify-center text-center">
  <TextGenerateEffect  words={wordsgen} />
  </div></section> */}
-<section className="flex justify-center" >
-  <div className="lyrical-cont columns-2 mb-6">
 
-  <div >
- <div className="hspiral-container relative flex items-center justify-center "onClick={handleImageClick} >
+ <SongWithLyrics></SongWithLyrics>
 
- <WavyBackground className="bg-opac max-w-4xl mx-auto pb-40 "></WavyBackground>
-<div  className="vinyl-container"    onClick={handleDivClick}>
-    <div className="h-[4rem] bg-white packcontainer" >
-         </div>
-
-      
-<Image
-        src="/impalavinyl"
-        alt="dummy image"
-        width="1000"
-        height="1000"
-        className={`hypnotic-spiral relative flex items-center justify-center ${isSpinning ? 'spin-animation' : ''}`}
-        
-      />
-   
-
-
-
-
-</div>
-</div>
-</div>
-
-<div className="h-full flex justify-center flex-col">
-<p   className={`text-2xl sm:text-5xl flex flex-col font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pb-3 items-center text-center justify-center ${
-    triggerAnimation ? "what-he-said" : "what-was-said"
-  }`}>
-As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click on the vinyl</span></p>
-
-
-
-<div className="lyrics-display flex items-center justify-center pl-10 ">
-
- <TextGenerateEffect isClicked={isSpinning}  words={wordsgen} />
-</div>
-</div></div>
-
-</section>
 <section className="h-[100%]">
   <div className="section-psy-2 video-section relative flex justify-center ">
   
@@ -801,22 +504,32 @@ As Kevin said himself <span className="text-2xl font-light text-[#7fff00]">Click
     </video>
   </div>
 </section>
-<section>
-  <div className="relative flex justify-center">
+<section className="live-tour">
+  <div className="relative flex justify-center w-[100vw]">
+    <h1 className="text-2xl md:text-7xl absolute top-6">Experience It Live</h1>
   <img alt='element'
                 src="../imgs/headshot.png"
                 fetchPriority="high"
                 decoding="async"
-                className="absolute bottom-0 xl:max-w-screen-md w-[250px] max-h-[620px] md:w-[600px] sm:w-[300px] xs"
+                className="absolute bottom-0 xl:max-w-screen-md w-[175px] max-h-[620px] md:w-[600px] sm:w-[300px] "
                
               />
                 <img alt='element'
                 src="../imgs/TameImpalaBg.jpg"
                 fetchPriority="high"
                 decoding="async"
+                className="w-[100vw]"
            
                
               />
+
+              <div className="absolute bottom-3 arenas ">
+                <div className="flex justify-between gap-[10vw] text-2xl md:text-5xl">
+                <h1>Lollapalooza</h1>
+                <h1>Coachella</h1>
+                <h1>Asuncionico</h1>
+                </div>
+              </div>
          </div>
 </section>
 

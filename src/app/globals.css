@@ -90,15 +90,15 @@ body {
   }
 }
 .packcontainer {
-  transform: skewY(10deg);
+  /* transform: skewY(10deg); */
   height: 24rem;
   width: 23rem;
   background-image: url("https://res.cloudinary.com/dm3ienizb/image/upload/v1712063830/crumbled-paper.png");
 }
 .vinyl-container {
   position: absolute;
-  top: 24%;
-  right: 40%;
+  /* top: 24%;
+  right: 40%; */
   /* overflow: hidden; */
   z-index: 1;
   transition: transform 2s ease;
@@ -106,8 +106,8 @@ body {
 }
 .hypnotic-spiral {
   transform: skewY(15deg);
-  left: 10rem;
-  top: -21rem;
+  /* left: 10rem;
+  top: -21rem; */
   width: 21rem;
   z-index: -1;
   color: transparent;
@@ -360,6 +360,9 @@ transform: scale(1.1);
 }
 
 @media (max-width: 900px) {
+  .urban-body p{
+    font-size:20px;
+  }
   .what-was-said {
     transform: translateY(250px);
   }
@@ -379,6 +382,10 @@ transform: scale(1.1);
 }
 
 @media (max-width: 500px) {
+
+  .urban-body p{
+    font-size:10px;
+  }
 
   .spotify-blob{
     width:100%;
@@ -1171,3 +1178,21 @@ background: linear-gradient(to bottom, #F5FF2F 0%, #FF3B00 83%, #FF95E7 100%);
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+.live-tour h1{
+  font-family: "Balvine Demo";
+}
+
+
+.arenas h1:hover{
+
+  color:#7fff00
+
+}
+
+/* .arenas h1:hover{
+
+  color:#7fff00
+
+} */
