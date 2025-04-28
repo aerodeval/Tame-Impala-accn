@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@theme {
+  --breakpoint-xs: 30rem;
+
+}
 html,
 body {
   overflow-y:scroll;
   overflow-x: hidden;
 }
+
+
+
 @keyframes moveBackground {
   0% {
     background-position: 0 0;
@@ -597,7 +605,7 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: center;
-  text-align: left;
+ 
   top: 25%;
   z-index: 1000;
 }
@@ -628,7 +636,7 @@ h1 {
   width: 100%;
   display: flex;
   justify-content: center;
-  text-align: left;
+
   top: 70%;
   z-index: 1000;
   /* background: url('../../public/imgs/paper-3.png');
@@ -1196,3 +1204,30 @@ background: linear-gradient(to bottom, #F5FF2F 0%, #FF3B00 83%, #FF95E7 100%);
   color:#7fff00
 
 } */
+
+
+@media (max-width: 720px) {
+
+
+  .who-ist {
+    font-family: "Balvine Demo";
+    line-height: 6.5rem !important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 7rem;
+    top: 20%;
+    z-index: 1000;
+    /* background: url('../../public/imgs/paper-3.png');
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent; */
+  }
+}
+
+
+
+.top-div img{
+  filter: grayscale(1);
+}

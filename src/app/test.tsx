@@ -5,21 +5,17 @@ import { StickyScroll } from "./ui/sticky-scroll-reveal";
 import { Tabs } from "./ui/tabs";
 import {Spotify} from "react-spotify-embed"
 import React, { useEffect, useRef } from 'react';
-import { Draggable } from 'gsap/Draggable';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DirectionAwareHover } from "./ui/direction-aware-hover";
-import { TextGenerateEffect } from "./ui/text-generate-effect";
 import { useState } from "react";
-import { WavyBackground } from "./ui/wavy-background";
 import Quote from "./Quote";
 import { useGSAP } from '@gsap/react';
 import SongWithLyrics from "./MusicLyrics";
-import {imgContent,tabs,textList} from "./data/data"
+import {imgContent,textList} from "./data/data"
 
 
 gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(Draggable);
 const imageUrl ='/impalabg2_hahh5f';
 const imageUrl2 ='/impalabg3_z9f4mm';
 const imageUrl3 ='/tour-image';
@@ -49,14 +45,14 @@ export default function Home() {
       title: "Currents",
       value: "Currents",
       content: (
-        <div  className="test1 w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+        <div  className="test1 w-[full] overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
           <p>Currents</p>
           <Image
         src="/currents_fidqbz"
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -72,7 +68,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -88,7 +84,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -104,7 +100,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -120,7 +116,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20  absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -128,16 +124,16 @@ export default function Home() {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const changeText = () => {
-    gsap.to(textChangeRef.current, {
-      opacity: 0,
-      duration: 0.5,
-      onComplete: () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
-        gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
-      },
-    });
-  };
+  // const changeText = () => {
+  //   gsap.to(textChangeRef.current, {
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     onComplete: () => {
+  //       setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
+  //       gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
+  //     },
+  //   });
+  // };
 
   // useEffect(() => {
   //   const interval = setInterval(changeText, 1000); // Every 2 seconds
@@ -145,11 +141,11 @@ export default function Home() {
   // }, [textList.length]);
 
 
-  useEffect(() => {
-    intervalRef.current = window.setInterval(changeText, 2000); // Every 2 seconds
+  // useEffect(() => {
+  //   intervalRef.current = window.setInterval(changeText, 2000); // Every 2 seconds
 
-    return () => clearInterval(intervalRef.current); // Cleanup on unmount
-  }, [textList.length]); 
+  //   return () => clearInterval(intervalRef.current); // Cleanup on unmount
+  // }, [textList.length]); 
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -247,7 +243,7 @@ opacity:100,
                 src="../imgs/element-2.png"
                 fetchPriority="high"
                 decoding="async"
-                className="absolute bottom-4  right-4"
+                className="absolute bottom-4  right-4  "
                
               />
                  
@@ -263,78 +259,78 @@ opacity:100,
         scene="https://prod.spline.design/xxuLYntV0MgDM9DJ/scene.splinecode" 
       /> */}
       <Quote ></Quote>
-          <h1 className="text-6xl font-bold z-10 ml-5 pb-16"> Welcome to the  <span className="tame-impala-name">{textList[currentIndex]}</span> <br/> Experience</h1>
+          <h1 className="xl:text-6xl  md:text-4xl text-2xl font-bold z-10 ml-5 pb-16 pr-[68px] text-[#FFFFFF]"> Welcome to the  <span className="tame-impala-name">{textList[currentIndex]}</span> <br/> Experience</h1>
           </div>
 
       </section>
 
       <div className="wrapper" ref={containerRef} >
         <div id="top-div1" className="top-div" ref={topDivRef}>
-        <p  className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
+        <p  className="text-5xl text-center xs:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
                 Who is Tame Impala?
               </p>
           <div className="image-grid">
-            <div className="row-[12/24] col-[2/-1] image-top">
+            <div className="row-[34/18] col-[-25/28] xs:row-[12/24] xs:col-[2/-1] image-top">
            
               <img alt='img-gif1-placeholder'
                 src="../imgs/impalagif-placeholder.jpg"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full object-cover"
+                className="h-full object-cover  w-full xs:w-auto"
                 style={{ color: 'transparent' }}
               />
             </div>
-            <div className="row-[2/24] col-[18/-2] image-bottom">
+            <div className="row-[19/7] col-[26/1] xs:row-[2/24] xs:col-[18/-2] image-bottom">
               <img alt='img-gif2-placeholder'
                 src="../imgs/impalagif2-placeholder.jpg"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full object-cover"
+                className="h-full object-cover  w-full xs:w-auto"
                 style={{ color: 'transparent' }}
               />
             </div>
-            <div className="row-[3/10] col-[2/-1] image-bottom">
+            <div className="row-[1/10] col-[-25/28]  xs:row-[3/10] xs:col-[2/-1] image-bottom">
               <img alt='img-gif3-placeholder'
                 src="../imgs/impalagif3.png"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full object-cover"
+                className="h-full object-cover  w-full xs:w-auto"
                 style={{ color: 'transparent' }}
               />
             </div>
           </div>
         </div>
         <div id="bottom-div1" className="bottom-div">
-            <p ref={textRef} id="textop" className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+            <p ref={textRef} id="textop" className="text-5xl text-center  xs:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
                   Who is Tame Impala?
                 </p>
           <div>
             <div className="image-grid">
-              <div className="row-[12/24] col-[2/-1] image-top">
+              <div className="row-[29/18] col-[26/1] xs:row-[12/24] xs:col-[2/-1] image-top">
        
                 <img alt='impala-gif-1'
                   src="../imgs/impalagif.gif"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover w-full xs:w-auto"
                   style={{ color: 'transparent' }}
                 />
               </div>
-              <div className="row-[2/24] col-[18/-2] image-bottom">
+              <div className="row-[19/7] col-[26/1] xs:row-[2/24] xs:col-[18/-2] image-bottom">
                 <img alt='impala-gif-2'
                   src="../imgs/impalagif2.gif"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover  w-full xs:w-auto "
                   style={{ color: 'transparent' }}
                 />
               </div>
-              <div className="row-[3/10] col-[2/-1] image-bottom">
+              <div className="row-[1/10] col-[-25/28] xs:row-[3/10] xs:col-[2/-1] image-bottom">
                 <img alt='impala-gif-1'
                   src="../imgs/impalagif3.gif"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover  w-full xs:w-auto"
                   style={{ color: 'transparent' }}
                 />
               </div>
@@ -347,13 +343,13 @@ opacity:100,
     <section >
   <div ref={VidDivRef} className="section-psy   video-section relative flex justify-center ">
   <div ref={imgGridRef} className="image-grid absolute z-10 opacity-0">
-              <div className="row-[12/24] col-[2/-1] image-top">
+              <div className="row-[12/24] col-[2/-1] image-top ">
        
                 <img alt='impala-gif-1'
                   src="../imgs/tp-1.jpg"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover "
                   style={{ color: 'transparent' }}
                 />
               </div>
@@ -412,9 +408,9 @@ opacity:100,
     
                 </p>
                 <div ref={IPARef} className="flex gap-2">
-<span className="ipa-text">/teɪm ɪmˈpɑːlə/ 
+<span className="ipa-text text-[#FFFFFF]">/teɪm ɪmˈpɑːlə/ 
 
-</span> <span className="ipa-italy">noun</span></div>
+</span> <span className="ipa-italy text-[#FFFFFF]">noun</span></div>
                 <div ref={divRef}  className="h-[7px] bg-violet-800 w-full">
         
                 </div>
@@ -436,7 +432,7 @@ opacity:100,
     <section className="next-section" >
     <p   className="text-4xl sm:text-7xl  font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-8 flex items-center justify-center">
  Some of his work     </p>
-    <div style={{marginTop:0}} className=" h-[20rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-5xl mx-auto w-full  items-start justify-start my-40">
+    <div style={{marginTop:0}} className=" h-[30rem] md:h-[40rem] [perspective:1000px] relative b flex flex-col max-w-[80%] mx-auto w-full  items-start justify-start my-40">
     <Tabs tabs={tabs} />
   </div>
   </section>
@@ -458,7 +454,7 @@ His Journey </p>  <div className="p-10 flex items-center justify-center">
       </DirectionAwareHover>
     </div>
     </div>
-    <div className="test-zig">
+    <div  data-aos="fade-up" data-aos-duration="1200" className="test-zig">
   <div  className=" h-[40rem] relative  flex items-center justify-center">
       <DirectionAwareHover imageUrl={imageUrl2}>
         <p className="font-bold text-xl">Somewhere in space</p>
@@ -466,7 +462,7 @@ His Journey </p>  <div className="p-10 flex items-center justify-center">
       </DirectionAwareHover>
     </div>
     </div>
-    <div className="test-zag mb-[15rem]">
+    <div data-aos="fade-down" className="test-zag mb-[15rem]">
   <div  className=" h-[40rem] relative  flex items-center justify-center ">
       <DirectionAwareHover imageUrl={imageUrl3}>
         <p className="font-bold text-xl">In the mountains</p>
