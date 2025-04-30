@@ -15,7 +15,7 @@ import { WavyBackground } from "./ui/wavy-background";
 import Quote from "./Quote";
 import { useGSAP } from '@gsap/react';
 import SongWithLyrics from "./MusicLyrics";
-import {imgContent,tabs,textList} from "./data/data"
+import {imgContent,textList} from "./data/data"
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -41,6 +41,7 @@ export default function Home() {
   const imgGridRef = useRef<HTMLDivElement | null>(null);
   const textChangeRef = useRef(null);
   const intervalRef = useRef<number>(); // Store interval ID
+  const [imgLink, setImg] = useState("../imgs/TameImpalaBg.jpg")
 
 
 
@@ -128,16 +129,16 @@ export default function Home() {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const changeText = () => {
-    gsap.to(textChangeRef.current, {
-      opacity: 0,
-      duration: 0.5,
-      onComplete: () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
-        gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
-      },
-    });
-  };
+  // const changeText = () => {
+  //   gsap.to(textChangeRef.current, {
+  //     opacity: 0,
+  //     duration: 0.5,
+  //     onComplete: () => {
+  //       setCurrentIndex((prevIndex) => (prevIndex + 1) % textList.length);
+  //       gsap.to(textChangeRef.current, { opacity: 1, duration: 0.5 });
+  //     },
+  //   });
+  // };
 
   // useEffect(() => {
   //   const interval = setInterval(changeText, 1000); // Every 2 seconds
@@ -145,11 +146,11 @@ export default function Home() {
   // }, [textList.length]);
 
 
-  useEffect(() => {
-    intervalRef.current = window.setInterval(changeText, 2000); // Every 2 seconds
+  // useEffect(() => {
+  //   intervalRef.current = window.setInterval(changeText, 2000); // Every 2 seconds
 
-    return () => clearInterval(intervalRef.current); // Cleanup on unmount
-  }, [textList.length]); 
+  //   return () => clearInterval(intervalRef.current); // Cleanup on unmount
+  // }, [textList.length]); 
 
   useGSAP(() => {
     // Animation for the clip-path
@@ -193,7 +194,7 @@ opacity:100,
       scrollTrigger: {
         trigger: VidDivRef.current,
         start: 'top top', // Start when the top of the container reaches the top of the viewport
-        end: `+=3000`, // End 800 pixels after the start point
+        end: `+=1000`, // End 800 pixels after the start point
         scrub: 0.2, // Smoothly animate as the user scrolls
         pin:true
 
@@ -227,7 +228,7 @@ opacity:100,
   }, [containerRef] );
 
    return (
-    <div className="dark  bg-black bg-grid-white/[0.2]   overflow-hidden"  >
+    <div className="  bg-black bg-grid-white/[0.2]   overflow-hidden"  >
 
       <div className="grain">  </div>
       <section className="h-[100vh] flex relative">
@@ -426,7 +427,7 @@ opacity:100,
     </div>
     <div  className="absolute  inset-0 bg-black opacity-50 z-0"></div> 
     <video  className="bg-video sticky z-0 opacity-70" autoPlay loop muted preload="metadata">
-      <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1722423165/tmpala-vid.mp4" type="video/mp4" />
+      <source src="https://res.cloudinary.com/dm3ienizb/video/upload/v1745609377/Tmpala-Vid_qowzkt.webm" type="video/mp4" />
     </video>
   </div>
 </section>
@@ -495,7 +496,7 @@ As Kevin said himself</p>
   <span className=" get-lost-para z-10 text-[10px] sm:text-1xl  md:text-3xl">Tame Impalas Top Hits (personally approved)</span>
   </div>
   <div className="flex flex-col w-2/3   ">
-  <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
+  {/* <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" /> */}
   </div>
   </div>
     <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
@@ -505,31 +506,36 @@ As Kevin said himself</p>
   </div>
 </section>
 <section className="live-tour">
-  <div className="relative flex justify-center w-[100vw]">
+  <div className="relative flex justify-center w-[100vw] group">
+    <div className="flex justify-center">
     <h1 className="text-2xl md:text-7xl absolute top-6">Experience It Live</h1>
   <img alt='element'
                 src="../imgs/headshot.png"
                 fetchPriority="high"
                 decoding="async"
-                className="absolute bottom-0 xl:max-w-screen-md w-[175px] max-h-[620px] md:w-[600px] sm:w-[300px] "
+                className="absolute bottom-0 xl:max-w-screen-md w-[175px] max-h-[620px] md:w-[600px] sm:w-[300px] transition-opacity duration-500 opacity-100 "
                
               />
                 <img alt='element'
-                src="../imgs/TameImpalaBg.jpg"
+                 src={imgLink
+                  
+                 }
                 fetchPriority="high"
                 decoding="async"
                 className="w-[100vw]"
            
                
-              />
+              />    </div>
+
 
               <div className="absolute bottom-3 arenas ">
                 <div className="flex justify-between gap-[10vw] text-2xl md:text-5xl">
-                <h1>Lollapalooza</h1>
-                <h1>Coachella</h1>
+                <h1 onMouseEnter={()=>{ setImg(" ../imgs/coachella.jpg")}}>Lollapalooza</h1>
+                <h1 onMouseEnter={()=>{ setImg(" ../imgs/Lollapaloza.jpeg")}}>Coachella</h1>
                 <h1>Asuncionico</h1>
                 </div>
               </div>
+     
          </div>
 </section>
 

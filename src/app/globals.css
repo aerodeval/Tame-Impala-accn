@@ -1196,3 +1196,8 @@ background: linear-gradient(to bottom, #F5FF2F 0%, #FF3B00 83%, #FF95E7 100%);
   color:#7fff00
 
 } */
+ 
+h1, .ipa-text, .get-lost-para, .ipa-italy{
+
+  color: white;
+}
