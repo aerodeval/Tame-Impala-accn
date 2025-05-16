@@ -51,10 +51,10 @@ const VinylPlayer: React.FC<{
   onClick: () => void;
 }> = ({ isSpinning, onClick }) => (
   <div
-    className="hspiral-container relative flex items-center justify-center"
+    className="hspiral-container relative flex items-center justify-center gap-[80px]"
     onClick={onClick}
   >
-    <WavyBackground className="bg-opac max-w-4xl mx-auto pb-40" />
+    <WavyBackground className="bg-opac max-w-4xl mx-auto " />
     <div className="vinyl-container">
       <Image
         src="/impalavinyl"
@@ -73,18 +73,16 @@ const LyricsDisplay: React.FC<{
   currentLine: string;
   triggerAnimation: boolean;
 }> = ({ currentLine, triggerAnimation }) => (
-  <div className="h-full flex justify-center flex-col relative bottom-10">
+  <div className="h-full flex justify-center flex-col relative w-full">
     <p
       className={`text-2xl sm:text-5xl flex flex-col font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 pb-3 items-center text-center justify-center ${
         triggerAnimation ? "what-he-said" : "what-was-said"
       }`}
     >
       As Kevin said himself{" "}
-      <span className="text-2xl font-light text-[#7fff00]">
-        Click on the vinyl
-      </span>
+  
     </p>
-    <div className="lyrics-display flex items-center justify-center pl-10">
+    <div className="lyrics-display flex items-center justify-center ">
       <div
         style={{
           marginTop: "20px",
@@ -93,7 +91,9 @@ const LyricsDisplay: React.FC<{
           textAlign: "center",
         }}
       >
-        <p>{currentLine || "..."}</p>
+        <p>{currentLine ||     <span className="text-2xl font-light text-[#7fff00]">
+        Click on the vinyl
+      </span>}</p>
       </div>
     </div>
   </div>
@@ -145,14 +145,19 @@ const SongWithLyrics: React.FC = () => {
 
   return (
     <section className="flex justify-center">
-      <div className="lyrical-cont flex flex-col mb-6">
-        <VinylPlayer isSpinning={isSpinning} onClick={handleDivClick} />
-        <LyricsDisplay currentLine={currentLine} triggerAnimation={triggerAnimation} />
-        <audio
+      <div className="lyrical-cont flex md:flex-row w-full justify-center items-center mb-6 gap-[80px]">
+        <div className="w-[300px]
+        ">    <audio
           ref={audioRef}
           src={AUDIO_SRC}
           onTimeUpdate={handleTimeUpdate}
         />
+        <VinylPlayer isSpinning={isSpinning} onClick={handleDivClick} />
+        </div>
+        <div>
+        <LyricsDisplay currentLine={currentLine} triggerAnimation={triggerAnimation} />
+        </div>
+    
       </div>
     </section>
   );

@@ -421,7 +421,7 @@ opacity:100,
                 </div>
                 <div ref={ParagraphRef} className=" urban-body  pt-3 text-[#7fff00]">
                   <p>
-                A one-man musical journey led by Kevin Parker that feels like a cosmic trip through the 70s, but with a modern twist. Imagine cruising through a kaleidoscope of dreamy guitars, hypnotic synths, and rhythms that make you want to both dance and ponder life’s deeper meanings. It’s the perfect soundtrack for daydreamers, night thinkers, and anyone who appreciates a good existential groove. Essentially, Tame Impala is what you listen to when you want to get lost in your own head and have a great time doing it.
+                A one-man musical journey led by Kevin Parker that feels like a cosmic trip through the 70s, but with a modern twist. Imagine cruising through a kaleidoscope of dreamy guitars, hypnotic synths, and rhythms that make you want to both dance and ponder life's deeper meanings. It's the perfect soundtrack for daydreamers, night thinkers, and anyone who appreciates a good existential groove. Essentially, Tame Impala is what you listen to when you want to get lost in your own head and have a great time doing it.
                 </p></div>
 
     </div>
@@ -491,12 +491,36 @@ As Kevin said himself</p>
   
     <div className="absolute z-10 flex flex-col items-center container mx-auto">
     <div className="flex flex-col w-2/3  items-center justify-center p-5 text-center ">
-  <h1  className="text-2xl sm:text-3xl  md:text-7xl font-bold  z-10 get-lost  text-[#7fff00]">
+  <h1  className="text-2xl sm:text-4xl  md:text-4xl font-bold  z-10 get-lost  text-[#7fff00]">
   Get Lost in the Psychedelia:</h1>
-  <span className=" get-lost-para z-10 text-[10px] sm:text-1xl  md:text-3xl">Tame Impalas Top Hits (personally approved)</span>
+  <span className=" get-lost-para z-10 text-[10px] sm:text-2xl  md:text-2xl">Tame Impalas Top Hits (personally approved)</span>
   </div>
   <div className="flex flex-col w-2/3   ">
-  {/* <Spotify style={{width:"100%"}}  link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" /> */}
+  {/* <Spotify  className="hidden md:block w-100" link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" />
+  <Spotify   className="max-w-[170px] max-h-[200px] md:hidden" link="https://open.spotify.com/playlist/57VwfwVQr5mRoUnnnV2qxA?si=65447040945e4651" /> */}
+
+<iframe 
+ className="md:block hidden"
+  style={{ borderRadius: "12px" }} 
+  src="https://open.spotify.com/embed/playlist/57VwfwVQr5mRoUnnnV2qxA?utm_source=generator" 
+  width="100%" 
+  height="352" 
+  frameBorder="0" 
+  allowFullScreen={true}
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+  loading="lazy"
+/>
+<iframe 
+ className="md:hidden block"
+  style={{ borderRadius: "12px" }} 
+  src="https://open.spotify.com/embed/playlist/57VwfwVQr5mRoUnnnV2qxA?utm_source=generator" 
+  width="100%" 
+  height="122" 
+  frameBorder="0" 
+  allowFullScreen={true}
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+  loading="lazy"
+/>
   </div>
   </div>
     <div className="absolute inset-0 bg-black opacity-50 z-0"></div> 
@@ -505,15 +529,15 @@ As Kevin said himself</p>
     </video>
   </div>
 </section>
-<section className="live-tour">
-  <div className="relative flex justify-center w-[100vw] group">
+<section className="live-tour ">
+  <div className="relative flex justify-center w-[100vw] group max-h-[100vh]">
     <div className="flex justify-center">
     <h1 className="text-2xl md:text-7xl absolute top-6">Experience It Live</h1>
   <img alt='element'
                 src="../imgs/headshot.png"
                 fetchPriority="high"
                 decoding="async"
-                className="absolute bottom-0 xl:max-w-screen-md w-[175px] max-h-[620px] md:w-[600px] sm:w-[300px] transition-opacity duration-500 opacity-100 "
+                className="absolute bottom-0 xl:max-w-screen-md w-[175px] max-h-[620px] md:w-[390px] sm:w-[300px] transition-opacity duration-500 opacity-100 "
                
               />
                 <img alt='element'
@@ -526,13 +550,14 @@ As Kevin said himself</p>
            
                
               />    </div>
+              
 
 
               <div className="absolute bottom-3 arenas ">
                 <div className="flex justify-between gap-[10vw] text-2xl md:text-5xl">
-                <h1 onMouseEnter={()=>{ setImg(" ../imgs/coachella.jpg")}}>Lollapalooza</h1>
-                <h1 onMouseEnter={()=>{ setImg(" ../imgs/Lollapaloza.jpeg")}}>Coachella</h1>
-                <h1>Asuncionico</h1>
+                <h1 onMouseEnter={()=>{ setImg("https://res.cloudinary.com/dm3ienizb/image/upload/v1747306222/Tame_Impala_-_The_Less_I_Know_the_Better_Lollapalooza_Bras_yjau3e.gif")}}>Lollapalooza</h1>
+                <h1 onMouseEnter={()=>{ setImg("https://res.cloudinary.com/dm3ienizb/image/upload/v1747306581/TameImpalaTheLessIKnowTheBetters2019Coachella-ezgif.com-cut_hzppti.gif")}}>Coachella</h1>
+                <h1 onMouseEnter={()=>{ setImg("https://res.cloudinary.com/dm3ienizb/image/upload/v1747306823/TameImpala-ThelessiKnowthebetterliveAsuncionico-ezgif.com-optimize_u12mz5.gif")}}>Asuncionico</h1>
                 </div>
               </div>
      
