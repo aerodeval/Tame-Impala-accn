@@ -13,6 +13,10 @@ module.exports = {
   darkMode: "class",
   
   theme: {
+    screens: {
+      'xs': '40rem',  // 480px
+      ...defaultTheme.screens,
+    },
     // rest of the code
   },
   plugins: [

@@ -45,19 +45,20 @@ export default function Home() {
 
 
 
+
   const tabs = [
     {
       title: "Currents",
       value: "Currents",
       content: (
-        <div  className="test1 w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
+        <div  className="test1 w-[full] overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-white bg-gradient-to-br from-purple-700 to-violet-900">
           <p>Currents</p>
           <Image
         src="/currents_fidqbz"
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -73,7 +74,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -89,7 +90,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20 md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -105,7 +106,7 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
       />
         </div>
       ),
@@ -121,12 +122,15 @@ export default function Home() {
         alt="dummy image"
         width="1000"
         height="1000"
-        className="object-contain h-[60%] pb-20  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-xl mx-auto"
+        className="object-contain h-[80%] xs:h-full  pb-20  absolute -bottom-10 inset-x-0 w-[50%] rounded-xl mx-auto"
       />
         </div>
       ),
     },
   ];
+
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // const changeText = () => {
@@ -269,73 +273,75 @@ opacity:100,
 
       </section>
 
+
+
       <div className="wrapper" ref={containerRef} >
         <div id="top-div1" className="top-div" ref={topDivRef}>
-        <p  className="text-2xl sm:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
+        <p  className="text-5xl text-center xs:text-8xl font-bold absolute who-ist bottom-text text-[#E5B0A3]">
                 Who is Tame Impala?
               </p>
           <div className="image-grid">
-            <div className="row-[12/24] col-[2/-1] image-top">
+            <div className="row-[34/18] col-[-25/28] xs:row-[12/24] xs:col-[2/-1] image-top">
            
               <img alt='img-gif1-placeholder'
                 src="../imgs/impalagif-placeholder.jpg"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full object-cover"
+                className="h-full object-cover  w-full xs:w-auto"
                 style={{ color: 'transparent' }}
               />
             </div>
-            <div className="row-[2/24] col-[18/-2] image-bottom">
+            <div className="row-[19/7] col-[26/1] xs:row-[2/24] xs:col-[18/-2] image-bottom">
               <img alt='img-gif2-placeholder'
                 src="../imgs/impalagif2-placeholder.jpg"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full object-cover"
+                className="h-full object-cover  w-full xs:w-auto"
                 style={{ color: 'transparent' }}
               />
             </div>
-            <div className="row-[3/10] col-[2/-1] image-bottom">
+            <div className="row-[1/10] col-[-25/28]  xs:row-[3/10] xs:col-[2/-1] image-bottom">
               <img alt='img-gif3-placeholder'
                 src="../imgs/impalagif3.png"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full object-cover"
+                className="h-full object-cover  w-full xs:w-auto"
                 style={{ color: 'transparent' }}
               />
             </div>
           </div>
         </div>
         <div id="bottom-div1" className="bottom-div">
-            <p ref={textRef} id="textop" className="text-2xl sm:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
+            <p ref={textRef} id="textop" className="text-5xl text-center  xs:text-8xl font-bold absolute who-ist top-text text-[#7fff00]">
                   Who is Tame Impala?
                 </p>
           <div>
             <div className="image-grid">
-              <div className="row-[12/24] col-[2/-1] image-top">
+              <div className="row-[29/18] col-[26/1] xs:row-[12/24] xs:col-[2/-1] image-top">
        
                 <img alt='impala-gif-1'
                   src="../imgs/impalagif.gif"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover w-full xs:w-auto"
                   style={{ color: 'transparent' }}
                 />
               </div>
-              <div className="row-[2/24] col-[18/-2] image-bottom">
+              <div className="row-[19/7] col-[26/1] xs:row-[2/24] xs:col-[18/-2] image-bottom">
                 <img alt='impala-gif-2'
                   src="../imgs/impalagif2.gif"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover  w-full xs:w-auto "
                   style={{ color: 'transparent' }}
                 />
               </div>
-              <div className="row-[3/10] col-[2/-1] image-bottom">
+              <div className="row-[1/10] col-[-25/28] xs:row-[3/10] xs:col-[2/-1] image-bottom">
                 <img alt='impala-gif-1'
                   src="../imgs/impalagif3.gif"
                   fetchPriority="high"
                   decoding="async"
-                  className="h-full object-cover"
+                  className="h-full object-cover  w-full xs:w-auto"
                   style={{ color: 'transparent' }}
                 />
               </div>
@@ -344,7 +350,6 @@ opacity:100,
         </div>
       
       </div>
-
     <section >
   <div ref={VidDivRef} className="section-psy   video-section relative flex justify-center ">
   <div ref={imgGridRef} className="image-grid absolute z-10 opacity-0">
